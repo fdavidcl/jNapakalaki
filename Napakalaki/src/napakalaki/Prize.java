@@ -11,5 +11,17 @@ package napakalaki;
  * @author fdavidcl
  */
 public class Prize {
+    private int treasures;
+    private int levels;
     
+    Prize(int treasures, int levels) {
+        this.treasures = treasures;
+        this.levels = levels;
+    }
+    public int getTreasures() {
+        return treasures;
+    }
+    public int getLevels() {
+        return levels;
+    }
 }

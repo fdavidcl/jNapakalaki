@@ -11,5 +11,10 @@ package napakalaki;
  * @author fdavidcl
  */
 public enum TreasureKind {
-    
+    ARMOR,
+    ONEHAND,
+    BOTHHANDS,
+    HELMET,
+    SHOE,
+    NECKLACE;
 }
