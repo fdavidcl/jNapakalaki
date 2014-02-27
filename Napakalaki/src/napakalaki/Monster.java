@@ -32,6 +32,6 @@ public class Monster {
     }
     
     public String toString(){
-        return "Nombre: " + name + "\nNivel: " + Integer.toString(level);
+        return "Nombre: " + name + ", Nivel: " + Integer.toString(level);
     }
 }

@@ -60,9 +60,9 @@ public class BadConsequence {
         return death;
     }
     public String toString(){
-        return "Mal rollo: " + text + "\nNiveles: " + Integer.toString(levels)
-                + "\nTesoros visibles: " + Integer.toString(nVisibleTreasures)
-                + "\nTesoros no visibles: " + Integer.toString(nHiddenTreasures)
-                + "\nMuerte: " + (death ? "Sí": "No");
+        return text + ": Levels: " + Integer.toString(levels)
+                + ", Visible treasures: " + Integer.toString(nVisibleTreasures)
+                + ", Hidden treasures: " + Integer.toString(nHiddenTreasures)
+                + ", Death: " + (death ? "Sí": "No");
     }
 }

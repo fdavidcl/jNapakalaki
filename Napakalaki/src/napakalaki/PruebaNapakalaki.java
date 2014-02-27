@@ -20,6 +20,8 @@ public class PruebaNapakalaki {
         System.out.println(p.toString());
         BadConsequence malrollo = new BadConsequence("Mortal", true);
         System.out.println(malrollo.toString());
+        Monster nacho = new Monster("Nacho", 30, malrollo, p);
+        System.out.println(nacho.toString());
     }
     
 }
