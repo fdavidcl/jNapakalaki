@@ -13,13 +13,24 @@ package napakalaki;
 public class Monster {
     private String name;
     private int level;
+    private Prize prize;
+    private BadConsequence bad;
+    
+    Monster(String name, int level, BadConsequence bad, Prize prize){
+        this.name=name;
+        this.level=level;
+        this.bad=bad;
+        this.prize=prize;
+    }
     
     public String getName(){
         return name;
     }
+    
     public int getLevel(){
         return level;
     }
+    
     public String toString(){
         return "Nombre: " + name + "\nNivel: " + Integer.toString(level);
     }
