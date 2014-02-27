@@ -8,8 +8,19 @@ package napakalaki;
 
 /**
  *
- * @author fdavidcl
+ * @author nuwanda
  */
 public class Monster {
+    private String name;
+    private int level;
     
+    public String getName(){
+        return name;
+    }
+    public int getLevel(){
+        return level;
+    }
+    public String toString(){
+        return "Nombre: " + name + "\nNivel: " + Integer.toString(level);
+    }
 }
