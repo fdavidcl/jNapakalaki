@@ -31,8 +31,8 @@ public class BadConsequence {
             ArrayList<TreasureKind> tHidden){
         this.text = text;
         this.levels = levels;
-        specificVisibleTreasures = tVisible;
-        specificHiddenTreasures = tHidden;
+        specificVisibleTreasures = (ArrayList<TreasureKind>) tVisible.clone();
+        specificHiddenTreasures = (ArrayList<TreasureKind>) tHidden.clone();
     }
     
     BadConsequence(String text, boolean death) {
