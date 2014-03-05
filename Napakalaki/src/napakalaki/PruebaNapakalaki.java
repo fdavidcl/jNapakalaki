@@ -67,6 +67,19 @@ public class PruebaNapakalaki {
         
         return result;
     }
+    
+    /**
+     * 
+     * @param monsters Lista de monstruos a mostrar
+     */
+    public static void displayMonsters(ArrayList<Monster> monsters, String mensaje) {
+        System.out.printf("*** %s ***\n", mensaje);
+        
+        for (Monster actual : monsters) {
+            System.out.println(actual.toString());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -129,17 +142,13 @@ public class PruebaNapakalaki {
         // to->vacío, tv->Helmet
         
         int min_nivel = 10;
-        ArrayList<Monster> superiores = strongerThan(min_nivel, monsters);
-        System.out.printf("*** Monstruos con nivel mayor que %d ***\n%s\n", 
-                min_nivel, superiores.toString());
+        displayMonsters(strongerThan(min_nivel, monsters), "Monstruos con nivel mayor que" 
+                + Integer.toString(min_nivel));
         
-        ArrayList<Monster> quitan_niveles = levelTakers(monsters);
-        System.out.printf("*** Monstruos que sólo restan niveles ***\n%s\n",
-                quitan_niveles.toString());
+        displayMonsters(levelTakers(monsters), "Monstruos que solo restan niveles");
         
         int min_ganados = 2;
-       ArrayList<Monster> dan_mas_niveles = prizeMinLevels(2, monsters);
-        System.out.printf("*** Monstruos que dan mínimo %d niveles ***\n%s\n",
-                min_ganados, dan_mas_niveles.toString());
+        displayMonsters(prizeMinLevels(2, monsters), "Monstruos que dan mínimo " 
+                + Integer.toString(min_ganados) + " niveles");
     }   
 }
