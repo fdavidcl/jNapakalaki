@@ -84,7 +84,8 @@ public class BadConsequence {
     
     public BadConsequence clone() {
         BadConsequence copia;
-        if (specificHiddenTreasures.size() > 0) {
+        if (specificHiddenTreasures.size() > 0 || 
+            specificVisibleTreasures.size() > 0) {
             copia = new BadConsequence(text, levels, specificVisibleTreasures,
             specificHiddenTreasures);
         } else if (death == true) {
