@@ -26,7 +26,7 @@ public class Prize {
         return levels;
     }
     public String toString(){
-        return "Tesoros: " + treasures + ", Niveles: " + Integer.toString(levels);
+        return "Tesoros: " + Integer.toString(treasures) + ", Niveles: " + Integer.toString(levels);
     }
     
     public Prize clone() {
