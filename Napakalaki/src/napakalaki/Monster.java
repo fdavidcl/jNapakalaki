@@ -33,11 +33,11 @@ public class Monster {
     }
     
     public Prize getPrize(){
-        return prize;
+        return prize.clone();
     }
     
     public BadConsequence getBadConsequence(){
-        return bad;
+        return bad.clone();
     }
     
     public String toString(){
