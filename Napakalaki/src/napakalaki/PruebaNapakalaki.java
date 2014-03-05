@@ -12,12 +12,11 @@ import java.util.ArrayList;
  * @author ncordon
  */
 public class PruebaNapakalaki {
-    private static ArrayList<Monster> monsters;
     /**
      * 
      * @param level Nivel a partir del cual se imprimen los monstruos
      */
-    public static void strongerThan (int level){
+    public static void strongerThan(int level, ArrayList<Monster> monsters) {
         System.out.println("*** Monstruos de nivel superior a " + 
             Integer.toString(level) + "***");
             
@@ -31,7 +30,7 @@ public class PruebaNapakalaki {
         }
     }
     
-    public static void levelTakers (){
+    public static void levelTakers(ArrayList<Monster> monsters) {
         System.out.println("*** Monstruos que sólo restan niveles ***");
         
         for (int i=0; i < monsters.size(); ++i){
@@ -58,9 +57,9 @@ public class PruebaNapakalaki {
         //System.out.println(malrollo.toString());
         //Monster nacho = new Monster("Nacho", 30, malrollo, p);
         //System.out.println(nacho.toString());
-        
-        ArrayList<TreasureKind> tv=new ArrayList();
-        ArrayList<TreasureKind> to=new ArrayList();
+        ArrayList<Monster> monsters;
+        ArrayList<TreasureKind> tv = new ArrayList();
+        ArrayList<TreasureKind> to = new ArrayList();
         tv.add(TreasureKind.HELMET);
         to.add(TreasureKind.HELMET);
         monsters=new ArrayList();
@@ -89,7 +88,7 @@ public class PruebaNapakalaki {
         );
         tv.clear();
         to.clear();
-        // Nótese que perder totalidad tesoros == perder máximo (entero)de tesoros
+        // Nótese que perder totalidad tesoros == perder máximo (entero) de tesoros
         monsters.add(new Monster ("El gorrón en el umbral",10, new BadConsequence
             ("Pierdes todos tus tesoros visibles",0,Integer.MAX_VALUE,0), new Prize (3,1))
         );
@@ -109,7 +108,7 @@ public class PruebaNapakalaki {
         );
         // to->vacío, tv->Helmet
         
-        strongerThan(10);
-        levelTakers();
+        strongerThan(10, monsters);
+        levelTakers(monsters);
     }   
 }
