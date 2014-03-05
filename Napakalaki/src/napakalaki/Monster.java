@@ -18,10 +18,10 @@ public class Monster {
     private BadConsequence bad;
     
     Monster(String name, int level, BadConsequence bad, Prize prize){
-        this.name=name;
-        this.level=level;
-        this.bad=bad;
-        this.prize=prize;
+        this.name = name;
+        this.level = level;
+        this.bad = bad.clone();
+        this.prize = prize.clone();
     }
     
     public String getName(){
@@ -41,6 +41,12 @@ public class Monster {
     }
     
     public String toString(){
-        return "Nombre: " + name + ", Nivel: " + Integer.toString(level);
+        return "Nombre: " + name + ", Nivel: " + Integer.toString(level)
+                + "\n\tBuen rollo: " + prize.toString() + "\n\tMal rollo: "
+                + bad.toString() + "\n";
+    }
+    
+    public Monster clone() {
+        return new Monster(name, level, bad, prize);
     }
 }

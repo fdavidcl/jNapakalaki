@@ -29,7 +29,7 @@ public class BadConsequence {
         nHiddenTreasures = nHidden;
         specificHiddenTreasures = new ArrayList();
         specificVisibleTreasures = new ArrayList();
-        death=false;
+        death = false;
     }
     BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, 
             ArrayList<TreasureKind> tHidden){
@@ -37,7 +37,7 @@ public class BadConsequence {
         this.levels = levels;
         specificVisibleTreasures = (ArrayList<TreasureKind>) tVisible.clone();
         specificHiddenTreasures = (ArrayList<TreasureKind>) tHidden.clone();
-        death=false;
+        death = false;
     }
     
     BadConsequence(String text, boolean death) {
@@ -76,9 +76,23 @@ public class BadConsequence {
         return death;
     }
     public String toString(){
-        return text + ": Levels: " + Integer.toString(levels)
-                + ", Visible treasures: " + Integer.toString(nVisibleTreasures)
-                + ", Hidden treasures: " + Integer.toString(nHiddenTreasures)
-                + ", Death: " + (death ? "Sí": "No");
+        return text + ": Niveles: " + Integer.toString(levels)
+                + ", Tesoros visibles: " + Integer.toString(nVisibleTreasures)
+                + ", Tesoros ocultos: " + Integer.toString(nHiddenTreasures)
+                + ", Muerte: " + (death ? "Sí": "No");
+    }
+    
+    public BadConsequence clone() {
+        BadConsequence copia;
+        if (specificHiddenTreasures.size() > 0) {
+            copia = new BadConsequence(text, levels, specificVisibleTreasures,
+            specificHiddenTreasures);
+        } else if (death == true) {
+            copia = new BadConsequence(text, death);
+        } else {
+            copia = new BadConsequence(text, levels, nVisibleTreasures,
+            nHiddenTreasures);
+        }
+        return copia;
     }
 }
