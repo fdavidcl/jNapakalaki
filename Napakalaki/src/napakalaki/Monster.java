@@ -8,6 +8,7 @@ package napakalaki;
 
 /**
  *
+ * @author fdavidcl
  * @author nuwanda
  */
 public class Monster {
@@ -29,6 +30,14 @@ public class Monster {
     
     public int getLevel(){
         return level;
+    }
+    
+    public Prize getPrize(){
+        return prize;
+    }
+    
+    public BadConsequence getBadConsequence(){
+        return bad;
     }
     
     public String toString(){

@@ -9,6 +9,7 @@ package napakalaki;
 /**
  *
  * @author fdavidcl
+ * @author ncordon
  */
 public enum TreasureKind {
     ARMOR,

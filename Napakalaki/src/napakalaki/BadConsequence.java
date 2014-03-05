@@ -10,6 +10,7 @@ import java.util.ArrayList;
 /**
  *
  * @author fdavidcl
+ * @author ncordon
  */
 public class BadConsequence {
     private String text;
@@ -26,6 +27,9 @@ public class BadConsequence {
         this.levels = levels;
         nVisibleTreasures = nVisible;
         nHiddenTreasures = nHidden;
+        specificHiddenTreasures = new ArrayList();
+        specificVisibleTreasures = new ArrayList();
+        death=false;
     }
     BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, 
             ArrayList<TreasureKind> tHidden){
@@ -33,11 +37,15 @@ public class BadConsequence {
         this.levels = levels;
         specificVisibleTreasures = (ArrayList<TreasureKind>) tVisible.clone();
         specificHiddenTreasures = (ArrayList<TreasureKind>) tHidden.clone();
+        death=false;
     }
     
     BadConsequence(String text, boolean death) {
         this.text = text;
         this.death = death;
+        levels = nVisibleTreasures = nHiddenTreasures = 0;
+        specificVisibleTreasures = new ArrayList();
+        specificHiddenTreasures = new ArrayList();
     }
     
     public String getText() {
@@ -54,6 +62,14 @@ public class BadConsequence {
     
     public int getHiddenTreasures() {
         return nHiddenTreasures;
+    }
+    
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures(){
+        return (ArrayList<TreasureKind>) specificVisibleTreasures.clone();
+    }
+    
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
+        return (ArrayList<TreasureKind>) specificHiddenTreasures.clone();
     }
     
     public boolean getDeath() {
