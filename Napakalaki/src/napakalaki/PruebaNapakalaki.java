@@ -15,37 +15,57 @@ public class PruebaNapakalaki {
     /**
      * 
      * @param level Nivel a partir del cual se imprimen los monstruos
+     * @param monsters Lista de monstruos a analizar
      */
-    public static void strongerThan(int level, ArrayList<Monster> monsters) {
-        System.out.println("*** Monstruos de nivel superior a " + 
-            Integer.toString(level) + "***");
+    public static ArrayList<Monster> strongerThan(int level, ArrayList<Monster> monsters) {
+        ArrayList<Monster> stronger = new ArrayList();
+        
+        for (Monster actual : monsters){
             
-        for (int i=0; i < monsters.size(); ++i){
-            Monster act = monsters.get(i);
-            
-            if (act.getLevel() > level){
-                System.out.println(act.toString()+ "\n\t" + act.getPrize().toString()
-                    + "\n\t" + act.getBadConsequence().toString());
+            if (actual.getLevel() > level){
+                stronger.add(actual.clone());
             }
         }
+        
+        return stronger;
     }
     
-    public static void levelTakers(ArrayList<Monster> monsters) {
-        System.out.println("*** Monstruos que sólo restan niveles ***");
+    /**
+     * 
+     * @param monsters Lista de monstruos a analizar
+     */
+    public static ArrayList<Monster> levelTakers(ArrayList<Monster> monsters) {
+        ArrayList<Monster> result = new ArrayList();
         
-        for (int i=0; i < monsters.size(); ++i){
-            Monster monstruo = monsters.get(i);
-            BadConsequence act= monstruo.getBadConsequence();
+        for (Monster monstruo : monsters){
+            BadConsequence act = monstruo.getBadConsequence();
                         
             if (act.getLevels() > 0 && act.getSpecificHiddenTreasures().isEmpty()
                 && act.getSpecificVisibleTreasures().isEmpty() && !act.getDeath()
-                && act.getHiddenTreasures()==0 && act.getVisibleTreasures()==0){
+                && act.getHiddenTreasures()==0 && act.getVisibleTreasures()==0) {
                 
-                System.out.println(monstruo.toString() + "\n\t" + 
-                        monstruo.getPrize().toString() + "\n\t" + 
-                        monstruo.getBadConsequence().toString());
+                result.add(monstruo.clone());
             }
         }
+        
+        return result;
+    }
+    
+    /**
+     * 
+     * @param min Mínimo número de niveles a ganar
+     * @param monsters Lista de monstruos a analizar
+     */
+    public static ArrayList<Monster> prizeMinLevels(int min, ArrayList<Monster> monsters) {
+        ArrayList<Monster> result = new ArrayList();
+        
+        for (Monster actual : monsters) {
+            if (actual.getPrize().getLevels() >= min) {
+                result.add(actual.clone());
+            }
+        }
+        
+        return result;
     }
     /**
      * @param args the command line arguments
@@ -108,7 +128,18 @@ public class PruebaNapakalaki {
         );
         // to->vacío, tv->Helmet
         
-        strongerThan(10, monsters);
-        levelTakers(monsters);
+        int min_nivel = 10;
+        ArrayList<Monster> superiores = strongerThan(min_nivel, monsters);
+        System.out.printf("*** Monstruos con nivel mayor que %d ***\n%s\n", 
+                min_nivel, superiores.toString());
+        
+        ArrayList<Monster> quitan_niveles = levelTakers(monsters);
+        System.out.printf("*** Monstruos que sólo restan niveles ***\n%s\n",
+                quitan_niveles.toString());
+        
+        int min_ganados = 2;
+       ArrayList<Monster> dan_mas_niveles = prizeMinLevels(2, monsters);
+        System.out.printf("*** Monstruos que dan mínimo %d niveles ***\n%s\n",
+                min_ganados, dan_mas_niveles.toString());
     }   
 }
