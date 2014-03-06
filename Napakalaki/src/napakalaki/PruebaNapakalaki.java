@@ -72,18 +72,15 @@ public class PruebaNapakalaki {
      * 
      * @param monsters Lista de monstruos a analizar
      */
-    public static ArrayList<Monster> treasureTakers(ArrayList<Monster> monsters){
+    public static ArrayList<Monster> treasureKindTakers(TreasureKind kind, ArrayList<Monster> monsters){
         ArrayList<Monster> result = new ArrayList();
         
         for(Monster actual : monsters){
             BadConsequence bad=actual.getBadConsequence();
             
-            if (!bad.getSpecificHiddenTreasures().isEmpty()  || 
-                !bad.getSpecificVisibleTreasures().isEmpty() ||
-                bad.getHiddenTreasures() > 0 || bad.getVisibleTreasures() > 0){
-               
+            if (bad.getSpecificHiddenTreasures().contains(kind) ||
+                bad.getSpecificVisibleTreasures().contains(kind)){
                 result.add(actual.clone());
-            
             }
         }
         
@@ -221,6 +218,7 @@ public class PruebaNapakalaki {
         displayMonsters(prizeMinLevels(2, monsters), "Monstruos que dan mínimo" 
                 + Integer.toString(min_ganados) + " niveles");
         
-        displayMonsters(treasureTakers(monsters), "Monstruos que quitan algún tesoro");
+        displayMonsters(treasureKindTakers(TreasureKind.ARMOR, monsters), 
+                "Monstruos que quitan alguna armadura");
     }   
 }
