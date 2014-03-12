@@ -146,7 +146,7 @@ public class PruebaNapakalaki {
         to.clear();
         // Nótese que perder totalidad tesoros == perder máximo (entero) de tesoros
         monsters.add(new Monster ("El gorrón en el umbral",10, new BadConsequence
-            ("Pierdes todos tus tesoros visibles",0,Integer.MAX_VALUE,0), new Prize (3,1))
+            ("Pierdes todos tus tesoros visibles",0,BadConsequence.TODOS,0), new Prize (3,1))
         );
         tv.add(TreasureKind.ARMOR);
         monsters.add(new Monster ("H.P. Munchcraft",6, new BadConsequence
@@ -209,7 +209,7 @@ public class PruebaNapakalaki {
         );
 
         int min_nivel = 10;
-        displayMonsters(strongerThan(min_nivel, monsters), "Monstruos con nivel mayor que" 
+        displayMonsters(strongerThan(min_nivel, monsters), "Monstruos con nivel mayor que " 
                 + Integer.toString(min_nivel));
         
         displayMonsters(levelTakers(monsters), "Monstruos que solo restan niveles");
