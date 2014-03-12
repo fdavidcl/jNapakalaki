@@ -10,6 +10,7 @@ package napakalaki;
  *
  * @author fdavidcl
  * @author nuwanda
+ * 
  */
 public class Monster {
     private String name;

@@ -5,7 +5,6 @@
  */
 
 package napakalaki;
-
 import java.util.ArrayList;
 /**
  *
@@ -13,6 +12,7 @@ import java.util.ArrayList;
  * @author ncordon
  */
 public class BadConsequence {
+    public static int TODOS = Integer.MAX_VALUE;
     private String text;
     private int levels;
     private int nVisibleTreasures;
