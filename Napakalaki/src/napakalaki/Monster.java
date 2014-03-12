@@ -9,7 +9,7 @@ package napakalaki;
 /**
  *
  * @author fdavidcl
- * @author nuwanda
+ * @author ncordon
  * 
  */
 public class Monster {
