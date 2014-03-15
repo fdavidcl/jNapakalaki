@@ -109,14 +109,6 @@ public class PruebaNapakalaki {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        Prize p = new Prize(3, 4);
-        System.out.println(p.toString());
-        BadConsequence malrollo = new BadConsequence("Mortal", true);
-        System.out.println(malrollo.toString());
-        Monster nacho = new Monster("Nacho", 30, malrollo, p);
-        System.out.println(nacho.toString());
-        */
         ArrayList<Monster> monsters;
         ArrayList<TreasureKind> tv = new ArrayList();
         ArrayList<TreasureKind> to = new ArrayList();
@@ -153,7 +145,7 @@ public class PruebaNapakalaki {
         to.clear();
         // Nótese que perder totalidad tesoros == perder máximo (entero) de tesoros
         monsters.add(new Monster ("El gorrón en el umbral",10, new BadConsequence
-            ("Pierdes todos tus tesoros visibles",0,BadConsequence.TODOS,0), new Prize (3,1))
+            ("Pierdes todos tus tesoros visibles",0,BadConsequence.ALLLEVELS,0), new Prize (3,1))
         );
         tv.add(TreasureKind.ARMOR);
         monsters.add(new Monster ("H.P. Munchcraft",6, new BadConsequence
