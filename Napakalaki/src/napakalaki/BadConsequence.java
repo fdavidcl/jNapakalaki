@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class BadConsequence {
     public static final int ALLLEVELS = Integer.MAX_VALUE;
+    
     private String text;
     private int levels;
     private int nVisibleTreasures;
@@ -110,8 +111,10 @@ public class BadConsequence {
      */
     public String toString(){
         return text + ": Niveles: " + Integer.toString(levels)
-                + ", Tesoros visibles: " + Integer.toString(nVisibleTreasures)
-                + ", Tesoros ocultos: " + Integer.toString(nHiddenTreasures)
+                + ", Tesoros visibles: " + (specificVisibleTreasures.isEmpty() ?
+                    Integer.toString(nVisibleTreasures) : specificVisibleTreasures.toString())
+                + ", Tesoros ocultos: " + (specificHiddenTreasures.isEmpty() ?
+                    Integer.toString(nHiddenTreasures) : specificHiddenTreasures.toString())
                 + ", Muerte: " + (death ? "Sí": "No");
     }
 }
