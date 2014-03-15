@@ -24,7 +24,7 @@ public class PruebaNapakalaki {
         for (Monster actual : monsters){
             
             if (actual.getLevel() > level){
-                stronger.add(actual.clone());
+                stronger.add(actual);
             }
         }
         
