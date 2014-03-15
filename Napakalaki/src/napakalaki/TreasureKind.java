@@ -7,9 +7,9 @@
 package napakalaki;
 
 /**
- *
- * @author fdavidcl
- * @author ncordon
+ * Enumerado de tipos de tesoro
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public enum TreasureKind {
     ARMOR,

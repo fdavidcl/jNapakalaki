@@ -7,9 +7,9 @@
 package napakalaki;
 import java.util.ArrayList;
 /**
- *
- * @author fdavidcl
- * @author ncordon
+ * Clase que representa el mal rollo de un monstruo
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class BadConsequence {
     public static int TODOS = Integer.MAX_VALUE;
@@ -48,52 +48,70 @@ public class BadConsequence {
         specificHiddenTreasures = new ArrayList();
     }
     
+    /**
+     * Consultor del texto
+     * @return Texto del mal rollo
+     */
     public String getText() {
         return text;
     }
     
+    /**
+     * Consultor de niveles
+     * @return Niveles que se pierden
+     */
     public int getLevels() {
         return levels;
     }
     
+    /**
+     * Consultor de tesoros visibles
+     * @return Número de tesoros visibles perdidos
+     */
     public int getVisibleTreasures() {
         return nVisibleTreasures;
     }
     
+    /**
+     * Consultor de tesoros ocultos
+     * @return Número de tesoros ocultos perdidos
+     */
     public int getHiddenTreasures() {
         return nHiddenTreasures;
     }
     
+    /**
+     * Consultor de tesoros visibles específicos
+     * @return Lista de tesoros visibles perdidos
+     */
     public ArrayList<TreasureKind> getSpecificVisibleTreasures(){
         return (ArrayList<TreasureKind>) specificVisibleTreasures.clone();
     }
     
+    /**
+     * Consultor de tesoros ocultos específicos
+     * @return Lista de tesoros ocultos perdidos
+     */
     public ArrayList<TreasureKind> getSpecificHiddenTreasures(){
         return (ArrayList<TreasureKind>) specificHiddenTreasures.clone();
     }
     
+    /**
+     * Consultor de muerte
+     * @return Informa de si el mal rollo supone la muerte
+     */
     public boolean getDeath() {
         return death;
     }
+
+    /**
+     * Pasa el mal rollo a cadena
+     * @return Cadena con información del mal rollo
+     */
     public String toString(){
         return text + ": Niveles: " + Integer.toString(levels)
                 + ", Tesoros visibles: " + Integer.toString(nVisibleTreasures)
                 + ", Tesoros ocultos: " + Integer.toString(nHiddenTreasures)
                 + ", Muerte: " + (death ? "Sí": "No");
-    }
-    
-    public BadConsequence clone() {
-        BadConsequence copia;
-        if (specificHiddenTreasures.size() > 0 || 
-            specificVisibleTreasures.size() > 0) {
-            copia = new BadConsequence(text, levels, specificVisibleTreasures,
-            specificHiddenTreasures);
-        } else if (death == true) {
-            copia = new BadConsequence(text, death);
-        } else {
-            copia = new BadConsequence(text, levels, nVisibleTreasures,
-            nHiddenTreasures);
-        }
-        return copia;
     }
 }

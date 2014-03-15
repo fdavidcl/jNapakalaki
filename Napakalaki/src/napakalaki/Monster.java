@@ -7,10 +7,9 @@
 package napakalaki;
 
 /**
- *
- * @author fdavidcl
- * @author ncordon
- * 
+ * Clase que representa un monstruo
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class Monster {
     private String name;
@@ -21,33 +20,49 @@ public class Monster {
     Monster(String name, int level, BadConsequence bad, Prize prize){
         this.name = name;
         this.level = level;
-        this.bad = bad.clone();
-        this.prize = prize.clone();
+        this.bad = bad;
+        this.prize = prize;
     }
     
+    /**
+     * Consultor de nombre
+     * @return Nombre del monstruo
+     */
     public String getName(){
         return name;
     }
     
+    /**
+     * Consultor de nivel
+     * @return Nivel del monstruo
+     */
     public int getLevel(){
         return level;
     }
     
+    /**
+     * Consultor de buen rollo
+     * @return Buen rollo del monstruo
+     */
     public Prize getPrize(){
-        return prize.clone();
+        return prize;
     }
     
+    /**
+     * Consultor de mal rollo
+     * @return Mal rollo del monstruo
+     */
     public BadConsequence getBadConsequence(){
-        return bad.clone();
+        return bad;
     }
     
+    /**
+     * Convierte a cadena el monstruo
+     * @return Cadena con la información del monstruo
+     */
     public String toString(){
         return "Nombre: " + name + ", Nivel: " + Integer.toString(level)
                 + "\n\tBuen rollo: " + prize.toString() + "\n\tMal rollo: "
                 + bad.toString() + "\n";
-    }
-    
-    public Monster clone() {
-        return new Monster(name, level, bad, prize);
     }
 }

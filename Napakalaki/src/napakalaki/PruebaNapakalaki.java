@@ -7,15 +7,16 @@
 package napakalaki;
 import java.util.ArrayList;
 /**
- *
- * @author fdavidcl
- * @author ncordon
+ * Clase para el programa principal
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class PruebaNapakalaki {
     /**
-     * 
+     * Devuelve los monstruos con nivel mayor que el especificado
      * @param level Nivel a partir del cual se imprimen los monstruos
      * @param monsters Lista de monstruos a analizar
+     * @return Monstruos en la lista con nivel mayor a `level`
      */
     public static ArrayList<Monster> strongerThan(int level, ArrayList<Monster> monsters) {
         ArrayList<Monster> stronger = new ArrayList();
@@ -31,8 +32,9 @@ public class PruebaNapakalaki {
     }
     
     /**
-     * 
+     * Devuelve los monstruos que solo restan niveles
      * @param monsters Lista de monstruos a analizar
+     * @return Monstruos de la lista que solo restan niveles
      */
     public static ArrayList<Monster> levelTakers(ArrayList<Monster> monsters) {
         ArrayList<Monster> result = new ArrayList();
@@ -52,9 +54,10 @@ public class PruebaNapakalaki {
     }
     
     /**
-     * 
+     * Halla los monstruos que aportan un mínimo de niveles
      * @param min Mínimo número de niveles a ganar
      * @param monsters Lista de monstruos a analizar
+     * @return Monstruos cuyo buen rollo da mínimo `min` niveles
      */
     public static ArrayList<Monster> prizeMinLevels(int min, ArrayList<Monster> monsters) {
         ArrayList<Monster> result = new ArrayList();
@@ -69,8 +72,10 @@ public class PruebaNapakalaki {
     }
     
     /**
-     * 
+     * Devuelve los monstruos que restan tesoros del tipo especificado
+     * @param kind Tipo de tesoros
      * @param monsters Lista de monstruos a analizar
+     * @return Monstruos cuyo mal rollo incluye tesoros de tipo `kind`
      */
     public static ArrayList<Monster> treasureKindTakers(TreasureKind kind, ArrayList<Monster> monsters){
         ArrayList<Monster> result = new ArrayList();
@@ -87,8 +92,9 @@ public class PruebaNapakalaki {
         return result;
     }
     /**
-     * 
+     * Muestra todos los monstruos de una lista por pantalla
      * @param monsters Lista de monstruos a mostrar
+     * @param mensaje Encabezado de la lista de monstruos
      */
     public static void displayMonsters(ArrayList<Monster> monsters, String mensaje) {
         System.out.printf("*** %s ***\n", mensaje);
@@ -99,6 +105,7 @@ public class PruebaNapakalaki {
     }
     
     /**
+     * Programa principal
      * @param args the command line arguments
      */
     public static void main(String[] args) {
