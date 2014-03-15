@@ -46,7 +46,7 @@ public class PruebaNapakalaki {
                 && act.getSpecificVisibleTreasures().isEmpty() && !act.getDeath()
                 && act.getHiddenTreasures()==0 && act.getVisibleTreasures()==0) {
                 
-                result.add(monstruo.clone());
+                result.add(monstruo);
             }
         }
         
@@ -64,7 +64,7 @@ public class PruebaNapakalaki {
         
         for (Monster actual : monsters) {
             if (actual.getPrize().getLevels() >= min) {
-                result.add(actual.clone());
+                result.add(actual);
             }
         }
         
@@ -85,7 +85,7 @@ public class PruebaNapakalaki {
             
             if (bad.getSpecificHiddenTreasures().contains(kind) ||
                 bad.getSpecificVisibleTreasures().contains(kind)){
-                result.add(actual.clone());
+                result.add(actual);
             }
         }
         
