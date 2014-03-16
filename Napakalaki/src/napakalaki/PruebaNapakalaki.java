@@ -43,7 +43,7 @@ public class PruebaNapakalaki {
             BadConsequence act = monstruo.getBadConsequence();
                         
             if (act.getLevels() > 0 && act.getSpecificHiddenTreasures().isEmpty()
-                && act.getSpecificVisibleTreasures().isEmpty() && !act.getDeath()
+                && act.getSpecificVisibleTreasures().isEmpty() 
                 && act.getHiddenTreasures()==0 && act.getVisibleTreasures()==0) {
                 
                 result.add(monstruo);
@@ -145,7 +145,7 @@ public class PruebaNapakalaki {
         to.clear();
         // Nótese que perder totalidad tesoros == perder máximo (entero) de tesoros
         monsters.add(new Monster ("El gorrón en el umbral",10, new BadConsequence
-            ("Pierdes todos tus tesoros visibles",0,BadConsequence.ALLLEVELS,0), new Prize (3,1))
+            ("Pierdes todos tus tesoros visibles",0,BadConsequence.ALLTREASURES,0), new Prize (3,1))
         );
         tv.add(TreasureKind.ARMOR);
         monsters.add(new Monster ("H.P. Munchcraft",6, new BadConsequence
@@ -182,7 +182,7 @@ public class PruebaNapakalaki {
             new Prize (3,1))
         );
         monsters.add(new Monster ("Familia Feliz",1, new BadConsequence
-            ("La familia te atrapa",true), new Prize (4,1))
+            ("La familia te atrapa. Estás muerto",true), new Prize (4,1))
         );
         tv.clear();
         tv.add(TreasureKind.BOTHHANDS);
@@ -192,20 +192,20 @@ public class PruebaNapakalaki {
         );
         tv.clear();
         tv.add(TreasureKind.HELMET);
-        monsters.add(new Monster ("El espia ciego",3, new BadConsequence
-            ("Te asusta en la noche. Pierdes un casco visible",4,tv,to), 
+        monsters.add(new Monster ("El espia ciego",4, new BadConsequence
+            ("Te asusta en la noche. Pierdes un casco visible",0,tv,to), 
             new Prize (1,1))
         );
         monsters.add(new Monster ("El lenguas",20, new BadConsequence
             ("Menudo susto te llevas. Pierdes 2 niveles y 5 tesoros visibles",
             2,5,0), new Prize (1,1))
         );
-        tv.clear();
-        tv.add(TreasureKind.BOTHHANDS);
         monsters.add(new Monster ("Bicéfalo",20, new BadConsequence
             ("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros"
-            + "visibles de las manos",3,tv,to), new Prize (1,1))
+            + "visibles de las manos",3,BadConsequence.ALLTREASURES,0), new Prize (1,1))
         );
+        tv.clear();
+        to.clear();
 
         int min_nivel = 10;
         displayMonsters(strongerThan(min_nivel, monsters), "Monstruos con nivel mayor que " 
