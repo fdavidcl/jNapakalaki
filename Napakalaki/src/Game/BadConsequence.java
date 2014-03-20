@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Ignacio Cordón Castillo
  */
 public class BadConsequence {
-    public static final int ALLLEVELS = Integer.MAX_VALUE;
+    public static final int ALLTREASURES = Integer.MAX_VALUE;
     
     private String text;
     private int levels;
