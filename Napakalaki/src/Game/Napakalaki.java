@@ -4,14 +4,32 @@
  * and open the template in the editor.
  */
 
-package Game;
+package napakalaki;
 import java.util.ArrayList;
 /**
  * Clase para el programa principal
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */
-public class PruebaNapakalaki {
+public class Napakalaki {
+    private static final Napakalaki instance = new Napakalaki();
+    
+    private Napakalaki() {}
+    
+    private void initPlayers (String names){}
+    
+    private Player
+    
+    
+    
+    
+    
+    
+    
+    public static MiClase getInstance(){
+        return instance;
+    }
+    
     /**
      * Devuelve los monstruos con nivel mayor que el especificado
      * @param level Nivel a partir del cual se imprimen los monstruos
