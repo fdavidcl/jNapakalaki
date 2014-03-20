@@ -35,5 +35,9 @@ public class CardDealer {
         return null;
     }
     
+    public void giveTreasureBack(Treasure t) { }
     
+    public void giveMonsterBack(Monster m) { }
+    
+    public void initCards() { }
 }
