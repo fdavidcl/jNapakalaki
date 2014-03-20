@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author Ignacio Cordón Castillo
  */
 public class Napakalaki {
+    private Player currentPlayer;
+    
+    private ArrayList<Player> players;
+    
     private static final Napakalaki instance = new Napakalaki();
     
     private Napakalaki() {}
@@ -22,7 +26,7 @@ public class Napakalaki {
         return null;
     }
     
-    public static MiClase getInstance(){
+    public static Napakalaki getInstance(){
         return instance;
     }
     
