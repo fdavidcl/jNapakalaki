@@ -49,6 +49,11 @@ public class BadConsequence {
         specificHiddenTreasures = new ArrayList();
     }
     
+    // Comentar
+    public boolean isEmpty(){
+        return true;
+    }
+    
     /**
      * Consultor del texto
      * @return Texto del mal rollo
@@ -101,7 +106,7 @@ public class BadConsequence {
      * Consultor de muerte
      * @return Informa de si el mal rollo supone la muerte
      */
-    public boolean getDeath() {
+    public boolean kills() {
         return death;
     }
 
@@ -116,5 +121,14 @@ public class BadConsequence {
                 + ", Tesoros ocultos: " + (specificHiddenTreasures.isEmpty() ?
                     Integer.toString(nHiddenTreasures) : specificHiddenTreasures.toString())
                 + ", Muerte: " + (death ? "Sí": "No");
+    }
+    
+    public void substractVisibleTreasure (Treasure t){}
+    
+    public void substractHiddenTreasure (Treasure t){}
+    
+    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> v,
+            ArrayList<Treasure> h){
+        return null;
     }
 }
