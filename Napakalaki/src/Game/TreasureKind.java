@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package napakalaki;
+package Game;
 
 /**
  * Enumerado de tipos de tesoro

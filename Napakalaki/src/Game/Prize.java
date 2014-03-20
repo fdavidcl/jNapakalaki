@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package napakalaki;
+package Game;
 
 /**
  * Clase que representa el buen rollo de un monstruo
