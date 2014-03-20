@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package napakalaki;
+package Game;
 import java.util.ArrayList;
 /**
  * Clase para el programa principal
@@ -18,17 +18,71 @@ public class Napakalaki {
     
     private void initPlayers (String names){}
     
-    private Player
-    
-    
-    
-    
-    
-    
+    private Player nextPlayer(){
+        return null;
+    }
     
     public static MiClase getInstance(){
         return instance;
     }
+    
+    public CombatResult combat(){
+        return null;
+    }
+    
+    public void discardVisibleTreasure (Treasure t){}
+    
+    public void discardHiddenTreasure (Treasure t){}
+    
+    public boolean makeTreasureVisible (Treasure t){
+        return true;
+    }
+    
+    public boolean buyLevels (ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
+        return true;
+    }
+    
+    public void initGame (ArrayList<String> players) {}
+    
+    public Player getCurrentPlayer(){
+        return null;
+    }
+    
+    public Monster getCurrentMonster(){
+        return null;
+    }
+    
+    public boolean canMakeTreasureVisible(Treasure t){
+        return true;
+    }
+    
+    public ArrayList<Treasure> getVisibleTreasures(){
+        return null;
+    }
+    
+    public ArrayList<Treasure> getHiddenTreasures(){
+        return null;
+    }
+    
+    public boolean nextTurn(){
+        return true;
+    }
+    
+    public boolean nextTurnAllowed(){
+        return true;
+    }
+    
+    public boolean endOfGame(CombatResult result){
+        return true;
+    }
+    
+    }
+    
+    
+    
+    
+    
+    
     
     /**
      * Devuelve los monstruos con nivel mayor que el especificado
