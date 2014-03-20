@@ -6,11 +6,17 @@
 
 package Game;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fdavidcl
  */
 public class CardDealer {
+    private ArrayList<Monster> usedMonsters;
+    private ArrayList<Monster> unusedMonsters;
+    private ArrayList<Monster> usedTreasures;
+    private ArrayList<Monster> unusedTreasures;
     private static final CardDealer instance = new CardDealer();
     
     private CardDealer() {}
