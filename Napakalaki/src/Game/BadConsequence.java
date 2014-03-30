@@ -12,8 +12,6 @@ import java.util.ArrayList;
  * @author Ignacio Cordón Castillo
  */
 public class BadConsequence {
-    public static final int ALLTREASURES = Integer.MAX_VALUE;
-    
     private String text;
     private int levels;
     private int nVisibleTreasures;
@@ -49,19 +47,13 @@ public class BadConsequence {
         specificHiddenTreasures = new ArrayList();
     }
     
-    // Comentar
+    /**
+     * Consulta si el mal rollo está vacío
+     */
     public boolean isEmpty(){
         return true;
     }
-    
-    /**
-     * Consultor del texto
-     * @return Texto del mal rollo
-     */
-    public String getText() {
-        return text;
-    }
-    
+
     /**
      * Consultor de niveles
      * @return Niveles que se pierden
