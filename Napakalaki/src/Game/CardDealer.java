@@ -9,8 +9,9 @@ package Game;
 import java.util.ArrayList;
 
 /**
- *
- * @author fdavidcl
+ * Clase singleton que reparte y gestiona las cartas
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class CardDealer {
     private ArrayList<Monster> usedMonsters;

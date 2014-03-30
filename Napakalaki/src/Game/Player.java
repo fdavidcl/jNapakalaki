@@ -9,8 +9,9 @@ package Game;
 import java.util.ArrayList;
 
 /**
- *
- * @author fdavidcl
+ * Clase que representa un jugador
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class Player {
     private boolean dead = true;
@@ -19,6 +20,10 @@ public class Player {
     private ArrayList<Treasure> hiddenTreasures;
     private ArrayList<Treasure> visibleTreasures;
     private BadConsequence pendingBadConsequence;
+    
+    Player(String name) {
+        this.name = name;
+    }
     
     private void bringToLife() {
         dead = false;
@@ -50,10 +55,6 @@ public class Player {
     
     private boolean canIBuyLevels(int l) {
         return false;
-    }
-    
-    public Player(String name) {
-        this.name = name;
     }
     
     public void applyPrize(Prize p) { }

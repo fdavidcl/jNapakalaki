@@ -7,6 +7,7 @@
 package Game;
 
 /**
+ * Posibles resultados de combate
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */

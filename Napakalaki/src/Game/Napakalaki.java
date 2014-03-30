@@ -7,7 +7,7 @@
 package Game;
 import java.util.ArrayList;
 /**
- * Clase para el programa principal
+ * Clase del juego principal
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */

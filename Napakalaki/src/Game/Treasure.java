@@ -7,8 +7,9 @@
 package Game;
 
 /**
- *
- * @author fdavidcl
+ * Clase que representa un tesoro
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 class Treasure {
     private String name;
@@ -17,7 +18,7 @@ class Treasure {
     private int maxBonus;
     private TreasureKind type;
     
-    public Treasure(String n, int g, int min, int max, TreasureKind t) {
+    Treasure(String n, int g, int min, int max, TreasureKind t) {
         name = n;
         goldCoins = g;
         minBonus = min;

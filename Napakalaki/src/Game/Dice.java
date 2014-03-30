@@ -7,8 +7,9 @@
 package Game;
 
 /**
- *
- * @author fdavidcl
+ * Clase singleton representando al dado
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class Dice {
     private static final Dice instance = new Dice();
