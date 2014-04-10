@@ -66,6 +66,9 @@ public class CardDealer {
         unusedMonsters.add(new Monster("3 Byakhees de bonanza",8,new BadConsequence
             ("Pierdes tu armadura visible y otra oculta",0,tv,to),new Prize(2,1))
         );
+        
+        unusedMonsters.get(0).name = "LOLOLOLOL";
+        
         tv.clear();
         to.clear();
         tv.add(TreasureKind.HELMET);
@@ -152,6 +155,8 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
+        
+        
     }
     
     private void shuffleTreasures() { }

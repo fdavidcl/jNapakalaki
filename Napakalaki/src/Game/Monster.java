@@ -12,7 +12,7 @@ package Game;
  * @author Ignacio Cordón Castillo
  */
 public class Monster {
-    private String name;
+    String name;
     private int level;
     private Prize prize;
     private BadConsequence bad;
