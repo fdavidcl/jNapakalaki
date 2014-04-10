@@ -15,12 +15,12 @@ public class Monster {
     String name;
     private int level;
     private Prize prize;
-    private BadConsequence bad;
+    private BadConsequence badConsequence;
     
-    Monster(String name, int level, BadConsequence bad, Prize prize){
+    Monster(String name, int level, BadConsequence badConsequence, Prize prize){
         this.name = name;
         this.level = level;
-        this.bad = bad;
+        this.badConsequence = badConsequence;
         this.prize = prize;
     }
     
@@ -53,7 +53,7 @@ public class Monster {
      * @return Mal rollo del monstruo
      */
     public BadConsequence getBadConsequence(){
-        return bad;
+        return badConsequence;
     }
     
     /**
@@ -63,6 +63,6 @@ public class Monster {
     public String toString(){
         return "Nombre: " + name + ", Nivel: " + Integer.toString(level)
                 + "\n\tBuen rollo: " + prize.toString() + "\n\tMal rollo: "
-                + bad.toString() + "\n";
+                + badConsequence.toString() + "\n";
     }
 }

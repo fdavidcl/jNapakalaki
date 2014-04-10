@@ -102,11 +102,11 @@ public class Player {
     }
 
     public ArrayList<Treasure> getHiddenTreasures() {
-        return hiddenTreasures;
+        return (ArrayList<Treasure>) hiddenTreasures.clone();
     }
 
     public ArrayList<Treasure> getVisibleTreasures() {
-        return visibleTreasures;
+        return (ArrayList<Treasure>) visibleTreasures.clone();
     }
     
     
