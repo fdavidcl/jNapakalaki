@@ -12,7 +12,11 @@ import java.util.ArrayList;
  * @author Ignacio Cordón Castillo
  */
 public class Napakalaki {
+    private Monster currentMonster;
+    
     private Player currentPlayer;
+    
+    private int currentPlayerIndex;
     
     private ArrayList<Player> players;
     
@@ -20,10 +24,16 @@ public class Napakalaki {
     
     private Napakalaki() {}
     
-    private void initPlayers (String names){}
+    private void initPlayers (ArrayList<String> names){
+        for (String p: names){
+            players.add(new Player(p));
+        }
+    }
     
     private Player nextPlayer(){
-        return null;
+        currentPlayerIndex += 1;
+        currentPlayerIndex %= players.size();
+        return players.get(currentPlayerIndex);
     }
     
     public static Napakalaki getInstance(){
@@ -31,55 +41,75 @@ public class Napakalaki {
     }
     
     public CombatResult combat(){
-        return null;
+        CombatResult result = currentPlayer.combat(currentMonster);
+        CardDealer.getInstance().giveMonsterBack(currentMonster);
+        return result;        
     }
     
-    public void discardVisibleTreasure (Treasure t){}
+    public void discardVisibleTreasure (Treasure t){
+        currentPlayer.discardVisibleTreasure(t);
+    }
     
-    public void discardHiddenTreasure (Treasure t){}
+    public void discardHiddenTreasure (Treasure t){
+        currentPlayer.discardHiddenTreasure(t);
+    }
     
     public boolean makeTreasureVisible (Treasure t){
-        return true;
+        return currentPlayer.makeTreasureVisible(t);
     }
     
     public boolean buyLevels (ArrayList<Treasure> visible, ArrayList<Treasure> hidden){
-        return true;
+        return currentPlayer.buyLevels(visible,hidden);
     }
     
-    public void initGame (ArrayList<String> players) {}
+    public void initGame (ArrayList<String> players){
+        CardDealer.getInstance().initCards();
+        initPlayers(players);
+        nextTurn();
+    }
     
     public Player getCurrentPlayer(){
-        return null;
+        return currentPlayer;
     }
     
     public Monster getCurrentMonster(){
-        return null;
+        return currentMonster;
     }
     
     public boolean canMakeTreasureVisible(Treasure t){
-        return true;
+        return currentPlayer.canMakeTreasureVisible(t);
     }
     
     public ArrayList<Treasure> getVisibleTreasures(){
-        return null;
+        return currentPlayer.getVisibleTreasures();
     }
     
     public ArrayList<Treasure> getHiddenTreasures(){
-        return null;
+        return currentPlayer.getHiddenTreasures();
     }
     
+    @SuppressWarnings("empty-statement")
     public boolean nextTurn(){
-        return true;
+        // Consultar: la función debe devolver stateOK??
+        boolean stateOK = nextTurnAllowed();
+        
+        if (stateOK){
+            currentMonster = CardDealer.getInstance().nextMonster();
+            currentPlayer = nextPlayer();
+            
+            if (currentPlayer.isDead())
+                currentPlayer.initTreasures();
+        }
+        return stateOK;
     }
     
     public boolean nextTurnAllowed(){
-        return true;
+        return currentPlayer.validState();
     }
     
     public boolean endOfGame(CombatResult result){
-        return true;
+        return result == CombatResult.WINANDWINGAME;
     }
-    
     
     /**
      * Programa principal

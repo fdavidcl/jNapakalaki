@@ -51,7 +51,9 @@ public class BadConsequence {
      * Consulta si el mal rollo está vacío
      */
     public boolean isEmpty(){
-        return true;
+        return 
+            levels == 0 && !death && nVisibleTreasures == 0 && nHiddenTreasures == 0 &&
+            specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty(); 
     }
 
     /**
@@ -115,12 +117,55 @@ public class BadConsequence {
                 + ", Muerte: " + (death ? "Sí": "No");
     }
     
-    public void substractVisibleTreasure (Treasure t){}
+    public void substractVisibleTreasure (Treasure t){
+        if (!specificVisibleTreasures.remove(t))
+            if (nVisibleTreasures > 0)
+                nVisibleTreasures -= 1;
+    }
     
-    public void substractHiddenTreasure (Treasure t){}
+    public void substractHiddenTreasure (Treasure t){
+        if (!specificHiddenTreasures.remove(t))
+            if (nHiddenTreasures > 0)
+                nHiddenTreasures -= 1;
+    }
     
-    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> v,
-            ArrayList<Treasure> h){
-        return null;
+    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> vis,
+            ArrayList<Treasure> hid){
+        ArrayList<TreasureKind> lostvis, losthid;
+        lostvis = new ArrayList();
+        losthid = new ArrayList();
+        
+        if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()){
+            for (Treasure t : vis.subList(0,nVisibleTreasures-1))
+                lostvis.add(t.getType());
+            
+            for (Treasure t : hid.subList(0,nHiddenTreasures-1))
+                losthid.add(t.getType());
+        }
+        else{
+            ArrayList<TreasureKind> vt = new ArrayList();
+            ArrayList<TreasureKind> ht = new ArrayList();
+            
+            for (Treasure t : vis)
+                vt.add(t.getType());
+            
+            for (Treasure t : hid)
+                ht.add(t.getType());
+            
+            for (TreasureKind t : specificVisibleTreasures){
+                if (vt.contains(t)){
+                    lostvis.add(t);
+                    vt.remove(t);
+                }
+            }
+            
+            for (TreasureKind t : specificHiddenTreasures){
+                if (ht.contains(t)){
+                    losthid.add(t);
+                    ht.remove(t);
+                }
+            }
+        }
+        return new BadConsequence(text,levels,lostvis,losthid);
     }
 }
