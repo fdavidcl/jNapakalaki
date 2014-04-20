@@ -6,6 +6,7 @@
 
 package Game;
 import java.util.ArrayList;
+import static java.lang.Math.min;
 /**
  * Clase que representa el mal rollo de un monstruo
  * @author Francisco David Charte Luque
@@ -136,10 +137,10 @@ public class BadConsequence {
         losthid = new ArrayList();
         
         if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()){
-            for (Treasure t : vis.subList(0,nVisibleTreasures-1))
+            for (Treasure t : vis.subList(0,min(nVisibleTreasures-1,specificVisibleTreasures.size()-1)))
                 lostvis.add(t.getType());
             
-            for (Treasure t : hid.subList(0,nHiddenTreasures-1))
+            for (Treasure t : hid.subList(0,min(nHiddenTreasures-1,specificHiddenTreasures.size()-1)))
                 losthid.add(t.getType());
         }
         else{
