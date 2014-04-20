@@ -6,6 +6,7 @@
 
 package Game;
 
+import java.util.Collections;
 import java.util.ArrayList;
 
 /**
@@ -159,25 +160,52 @@ public class CardDealer {
         
     }
     
-    private void shuffleTreasures() { }
+    private void shuffleTreasures(){
+        Collections.shuffle(unusedTreasures);
+    }
     
-    private void shuffleMonsters() { }
+    private void shuffleMonsters(){
+        Collections.shuffle(unusedMonsters);
+    }
     
     public static CardDealer getInstance() {
         return instance;
     }
     
     public Treasure nextTreasure() {
-        return null;
+        Treasure result = unusedTreasures.remove(0);
+        
+        if (unusedTreasures.isEmpty()){
+            unusedTreasures = (ArrayList<Treasure>)usedTreasures.clone();
+            usedTreasures.clear();
+            shuffleTreasures();
+        }
+        
+        return result;
     }
     
     public Monster nextMonster() {
-        return null;
+        Monster result = unusedMonsters.remove(0);
+        
+        if (unusedMonsters.isEmpty()){
+            unusedMonsters = (ArrayList<Monster>)usedMonsters.clone();
+            usedMonsters.clear();
+            shuffleMonsters();
+        }
+        
+        return result;
     }
     
-    public void giveTreasureBack(Treasure t) { }
+    public void giveTreasureBack(Treasure t){
+        usedTreasures.add(t);
+    }
     
-    public void giveMonsterBack(Monster m) { }
+    public void giveMonsterBack(Monster m){
+        usedMonsters.add(m);
+    }
     
-    public void initCards() { }
+    public void initCards(){
+        initMonsterCardDeck();
+        initTreasureCardDeck();
+    }
 }
