@@ -6,6 +6,8 @@
 
 package Game;
 
+import java.util.Random;
+
 /**
  * Clase singleton representando al dado
  * @author Francisco David Charte Luque
@@ -21,6 +23,6 @@ public class Dice {
     }
     
     public int nextNumber() {
-        return 0;
+        return new Random().nextInt(6) + 1;
     }
 }
