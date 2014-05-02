@@ -6,6 +6,7 @@
 
 package Game;
 import java.util.ArrayList;
+import java.util.Collections;
 import static java.lang.Math.min;
 /**
  * Clase que representa el mal rollo de un monstruo
@@ -105,6 +106,42 @@ public class BadConsequence {
         return death;
     }
 
+    public void substractVisibleTreasure (Treasure t){
+        specificVisibleTreasures.remove(t);
+    }
+    
+    public void substractHiddenTreasure (Treasure t){
+        specificHiddenTreasures.remove(t);
+    }
+    
+    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> vis,
+            ArrayList<Treasure> hid){
+        ArrayList<TreasureKind> vt = new ArrayList(), ht = new ArrayList(),
+                lostvis = new ArrayList(), losthid = new ArrayList();
+        
+        for (Treasure t : vis)
+                vt.add(t.getType());
+            
+        for (Treasure t : hid)
+            ht.add(t.getType());
+       
+        
+        if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()){
+            lostvis = (ArrayList<TreasureKind>) vt.subList(0,min(nVisibleTreasures-1,specificVisibleTreasures.size()-1));
+            losthid = (ArrayList<TreasureKind>) ht.subList(0,min(nHiddenTreasures-1,specificHiddenTreasures.size()-1));
+        }
+        else{
+            for (TreasureKind t : specificVisibleTreasures)
+                if (Collections.frequency(lostvis,t) < Collections.frequency(vt,t))
+                    lostvis.add(t);
+            
+            for (TreasureKind t : specificHiddenTreasures)
+                if (Collections.frequency(losthid,t) < Collections.frequency(ht,t))
+                    losthid.add(t);
+        }
+        return new BadConsequence(text,levels,lostvis,losthid);
+    }
+    
     /**
      * Pasa el mal rollo a cadena
      * @return Cadena con información del mal rollo
@@ -118,55 +155,4 @@ public class BadConsequence {
                 + ", Muerte: " + (death ? "Sí": "No");
     }
     
-    public void substractVisibleTreasure (Treasure t){
-        if (!specificVisibleTreasures.remove(t))
-            if (nVisibleTreasures > 0)
-                nVisibleTreasures -= 1;
-    }
-    
-    public void substractHiddenTreasure (Treasure t){
-        if (!specificHiddenTreasures.remove(t))
-            if (nHiddenTreasures > 0)
-                nHiddenTreasures -= 1;
-    }
-    
-    public BadConsequence adjustToFitTreasureLists (ArrayList<Treasure> vis,
-            ArrayList<Treasure> hid){
-        ArrayList<TreasureKind> lostvis, losthid;
-        lostvis = new ArrayList();
-        losthid = new ArrayList();
-        
-        if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()){
-            for (Treasure t : vis.subList(0,min(nVisibleTreasures-1,specificVisibleTreasures.size()-1)))
-                lostvis.add(t.getType());
-            
-            for (Treasure t : hid.subList(0,min(nHiddenTreasures-1,specificHiddenTreasures.size()-1)))
-                losthid.add(t.getType());
-        }
-        else{
-            ArrayList<TreasureKind> vt = new ArrayList();
-            ArrayList<TreasureKind> ht = new ArrayList();
-            
-            for (Treasure t : vis)
-                vt.add(t.getType());
-            
-            for (Treasure t : hid)
-                ht.add(t.getType());
-            
-            for (TreasureKind t : specificVisibleTreasures){
-                if (vt.contains(t)){
-                    lostvis.add(t);
-                    vt.remove(t);
-                }
-            }
-            
-            for (TreasureKind t : specificHiddenTreasures){
-                if (ht.contains(t)){
-                    losthid.add(t);
-                    ht.remove(t);
-                }
-            }
-        }
-        return new BadConsequence(text,levels,lostvis,losthid);
-    }
 }

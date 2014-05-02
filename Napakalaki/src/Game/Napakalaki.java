@@ -6,6 +6,7 @@
 
 package Game;
 import java.util.ArrayList;
+import java.util.Random;
 /**
  * Clase del juego principal
  * @author Francisco David Charte Luque
@@ -65,6 +66,8 @@ public class Napakalaki {
     public void initGame (ArrayList<String> players){
         CardDealer.getInstance().initCards();
         initPlayers(players);
+        currentPlayerIndex = new Random().nextInt(players.size());
+        currentPlayer = this.players.get(currentPlayerIndex);
         nextTurn();
     }
     
@@ -110,13 +113,5 @@ public class Napakalaki {
     public boolean endOfGame(CombatResult result){
         return result == CombatResult.WINANDWINGAME;
     }
-    
-    /**
-     * Programa principal
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-    }   
 }
  

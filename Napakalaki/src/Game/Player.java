@@ -60,7 +60,7 @@ public class Player {
         for (Treasure t : visibleTreasures){
             if (t.getType() == TreasureKind.NECKLACE){
                 CardDealer.getInstance().giveTreasureBack(t);
-                visibleTreasures.remove(t);
+                
                 break;
             }
         }
@@ -75,17 +75,31 @@ public class Player {
         for (Treasure v : t){
             sum += v.getGoldCoins();
         }
-        return sum;
+        return sum/1000;
     }
     
     private boolean canIBuyLevels(int l){
         return (level + l) < 10;
     }
     
+    private void discardTreasure(ArrayList<Treasure>list,Treasure t,boolean visible){
+        if (list.remove(t)){
+        
+            if (!validState())
+                if(visible)
+                    pendingBadConsequence.substractVisibleTreasure(t);
+                else
+                    pendingBadConsequence.substractHiddenTreasure(t);
+            
+            CardDealer.getInstance().giveTreasureBack(t);
+        }
+        
+        dieIfNoTreasures();
+    }
     public void applyPrize(Prize p){
         incrementLevels(p.getLevels());
         
-        for (int i=1; i<min(p.getTreasures(),4-hiddenTreasures.size());i++){
+        for (int i=0; i<min(p.getTreasures(),4-hiddenTreasures.size());i++){
             hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
         }
     }
@@ -127,8 +141,10 @@ public class Player {
     public boolean makeTreasureVisible(Treasure t) {
         boolean can;
         
-        if (can = canMakeTreasureVisible(t))
+        if (can = canMakeTreasureVisible(t)){
             visibleTreasures.add(t);
+            discardHiddenTreasure(t);
+        }
         
         return can;
     }
@@ -136,31 +152,25 @@ public class Player {
     public boolean canMakeTreasureVisible(Treasure t) {
         ArrayList <TreasureKind> vt = new ArrayList();
         
-        for (Treasure tes : visibleTreasures)
-            vt.add(tes.getType());
+        for (Treasure e : visibleTreasures)
+            vt.add(e.getType());
         
         if (t.getType() == TreasureKind.ONEHAND)
-            return (!vt.contains(TreasureKind.BOTHHANDS) && (Collections.frequency(vt, t.getType())<2));
+            return (!vt.contains(TreasureKind.BOTHHANDS) && (Collections.frequency(vt, TreasureKind.ONEHAND)<2));
         else{ 
             if (t.getType() == TreasureKind.BOTHHANDS)
                 return (!vt.contains(TreasureKind.BOTHHANDS) && vt.contains(TreasureKind.ONEHAND));
             else
-                return vt.contains(t.getType());
+                return !vt.contains(t.getType());
         }
     }
     
     public void discardVisibleTreasure(Treasure t){
-        visibleTreasures.remove(t);
-        
-        if (!validState())
-            pendingBadConsequence.substractVisibleTreasure(t);
-        
-        CardDealer.getInstance().giveTreasureBack(t);
-        dieIfNoTreasures();
+        discardTreasure(visibleTreasures, t, true);
     }
     
     public void discardHiddenTreasure(Treasure t){
-        hiddenTreasures.remove(t);
+        discardTreasure(visibleTreasures, t, false);
     }
     
     public boolean buyLevels(ArrayList<Treasure> v, ArrayList<Treasure> h) {
@@ -185,21 +195,18 @@ public class Player {
         return pendingBadConsequence == null || pendingBadConsequence.isEmpty();
     }
     
-    public boolean initTreasures() {
+    public void initTreasures() {
         bringToLife();
         int number = Dice.getInstance().nextNumber();
         
         if (number == 1)
             hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
-        // Esto podría hacerse con una variable que controlase el límite del for
-        // y que tomase 2 o 3 en función de number
         else{
             int limit = (number < 6 ? 2 : 3);
-            for (int i=0; i<limit; i++)
+            
+            for (int i=0; i<limit; ++i)
                 hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
         }
-        // Provisional
-        return true;
     }
     
     public boolean hasVisibleTreasures() {
@@ -210,7 +217,20 @@ public class Player {
         return dead;
     }
 
-    public int getCombatLevel() {
+    public String getName(){
+        return name;
+    }
+    
+    public int getCombatLevel(){
+        int sum = this.level;
+        
+        if (visibleTreasures.contains(TreasureKind.NECKLACE))
+            for (Treasure t : visibleTreasures)
+                sum += t.getMaxBonus();
+        else
+            for (Treasure t:visibleTreasures)
+               sum += t.getMinBonus();
+        
         return level;
     }
 
