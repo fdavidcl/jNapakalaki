@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package Game;
+package TextUI;
 
+import Game.CombatResult;
 import java.awt.print.Printable;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 public class TextUI {
     private static final TextUI instance = new TextUI();
-    private static final Napakalaki game = Napakalaki.getInstance();
+    private static final Game.Napakalaki game = Game.Napakalaki.getInstance();
     
     private TextUI(){}
     
@@ -96,19 +97,21 @@ public class TextUI {
         getString();
     }
     
-    private <T> void list(ArrayList<T> l){
-        System.out.print("\n[");
-        for (T t : l){
-            System.out.print(t.toString() + ' ');
+    private <T> void list(ArrayList<T> l, boolean indexed){
+        System.out.print("\n[ ");
+        for (int i=0; i<l.size(); ++i){
+            if (indexed)
+                System.out.print('['+ Integer.toString(i+1) +']');
+            System.out.print(l.get(i).toString() + ' ');
         }
         System.out.print("]\n");
     }
     
     // Esto funcionará???
     private void inspectTreasures(){
-        Player player = game.getCurrentPlayer();
+        Game.Player player = game.getCurrentPlayer();
         
-        Map<String,ArrayList<Treasure>> treasures = new HashMap();
+        Map<String,ArrayList<Game.Treasure>> treasures = new HashMap();
         treasures.put("visibles",game.getVisibleTreasures());
         treasures.put("hidden", game.getHiddenTreasures());
         
@@ -117,14 +120,88 @@ public class TextUI {
                 System.out.println("¡No tienes tesoros" + type + '!');
             else{
                 System.out.println("Tienes estos tesoros:");
-                list(treasures.get(type));
+                list(treasures.get(type), false);
             }
         }       
     }
     
+    private void discardTreasure(ArrayList<Game.Treasure> treasures, boolean visibles){
+        String type = (visibles ? "visibles" : "ocultos");
+        
+        if (treasures.isEmpty())
+            System.out.println("¡No tienes tesoros " + type + '!');
+        else{
+            System.out.println("Tesoros " + type + ':');
+            list (treasures,true);
+            int i = getInt(1, treasures.size()) - 1;
+            
+            if (visibles)
+                game.discardVisibleTreasure(treasures.get(i));
+            else
+                game.discardHiddenTreasure(treasures.get(i));
+        }
+    }
     
+    private ArrayList<Game.Treasure> treasureSelect(ArrayList<Game.Treasure> treasures, boolean visibles){
+        ArrayList<Game.Treasure> result = new ArrayList();
+        String type = (visibles ? "visibles" : "ocultos");
+        
+        if (!treasures.isEmpty()){
+            System.out.println("¿Qué tesoros " + type + " quieres emplear?");
+            int index = 1;
+                    
+            while (index > 0){
+                System.out.println("Seleccionados hasta el momento: ");
+                list(result, false);
+                System.out.println("\t [0] Terminar selección");
+                
+                index = getInt(0, treasures.size());
+                if (index > 0)
+                    result.add(treasures.remove(index - 1));
+            }        
+        }
+        else
+            System.out.println("¡No tienes tesoros " + type + '!');
+        
+        return result;
+    }
     
+    private void makeVisible(ArrayList<Game.Treasure> treasures){
+        if (treasures.isEmpty())
+            System.out.println("\t ¡No dispones de tesoros para equipar!");
+        else{
+            list(treasures,true);
+            System.out.print("\t Tesoro a equipar: ");
+            int i = getInt(1, treasures.size());
+            
+            if (!game.makeTreasureVisible(treasures.get(i)))
+                System.out.println("\t No puedes hacer visible este tesoro");
+        }
+    }
     
+    private void printCombatResult(Game.CombatResult result){
+        System.out.print("\t ---> ");
+        String msg = "";
+        
+        switch(result){
+            case WINANDWINGAME:
+                msg = "Has ganado el juego";
+                break;
+            case WIN:
+                msg = "Has ganado tu combate";
+                break;
+            case LOSE:
+                msg = "Has perdido tu combate, tienes que cumplir un mal rollo";
+                break;
+            case LOSEANDESCAPE:
+                msg = "Has perdido tu combate, pero has escapado a tiempo";
+                break;
+            case LOSEANDDIE:
+                msg = "Has perdido tu combate, y el monstruo te ha matado";
+                break;
+        }
+        System.out.print(msg + '\n');
+    }
     
     public void play(){
         // FUNCIONA MUAJAJAJAJAJ
@@ -132,8 +209,9 @@ public class TextUI {
         l.add(5);
         l.add(3);
         l.add(2);
-        list(l);
-        
+        l.add(4);
+        list(l,true);        
+        printCombatResult(CombatResult.WINANDWINGAME);
     }
     
     public static void main(String [ ] args){ 

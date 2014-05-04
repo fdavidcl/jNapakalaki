@@ -11,7 +11,7 @@ package Game;
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */
-class Treasure {
+public class Treasure {
     private String name;
     private int goldCoins;
     private int minBonus;
