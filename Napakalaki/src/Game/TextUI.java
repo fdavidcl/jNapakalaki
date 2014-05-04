@@ -97,11 +97,11 @@ public class TextUI {
     }
     
     private <T> void list(ArrayList<T> l){
-        System.out.println("[");
+        System.out.print("\n[");
         for (T t : l){
-            System.out.println(t.toString() + ' ');
+            System.out.print(t.toString() + ' ');
         }
-        System.out.println("]");
+        System.out.print("]\n");
     }
     
     // Esto funcionará???
@@ -127,6 +127,12 @@ public class TextUI {
     
     
     public void play(){
+        // FUNCIONA MUAJAJAJAJAJ
+        ArrayList<Integer> l =new ArrayList();
+        l.add(5);
+        l.add(3);
+        l.add(2);
+        list(l);
         
     }
     
