@@ -45,4 +45,9 @@ class Treasure {
     public TreasureKind getType() {
         return type;
     }
+    
+    public String toString(){
+        return type.toString().toUpperCase() + " \"" + name + " \"" + goldCoins + "oro" +
+            (type != TreasureKind.NECKLACE ? ", +" + minBonus + "/+" + maxBonus + "bonus)": ")");
+    }
 }
