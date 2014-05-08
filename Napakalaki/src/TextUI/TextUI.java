@@ -219,6 +219,12 @@ public class TextUI {
         CombatResult result;
         int option;
         
+ /////////////       
+        players.add ("Nacho");
+        players.add ("David");
+        players.add ("Batman");
+// DEPURACIÓN
+/* 
         System.out.println("Introduce nombre de los jugadores: ");
         while(read){
             String p = getString();
@@ -227,7 +233,7 @@ public class TextUI {
             else
                 players.add(p);
         }
-        
+*/        
         if (players.isEmpty() || players.size() > 3)
             throw new IllegalStateException("El número de jugadores debe estar entre 1 y 3.");
         
