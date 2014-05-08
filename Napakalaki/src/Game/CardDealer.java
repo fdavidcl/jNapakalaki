@@ -21,7 +21,12 @@ public class CardDealer {
     private ArrayList<Treasure> unusedTreasures;
     private static final CardDealer instance = new CardDealer();
     
-    private CardDealer() {}
+    private CardDealer(){
+        usedMonsters = new ArrayList();
+        unusedMonsters = new ArrayList();
+        usedTreasures = new ArrayList();
+        unusedTreasures = new ArrayList();
+    }
     
     private void initTreasureCardDeck() {
         unusedTreasures.add(new Treasure ("¡Sí mi amo!",0,4,7,TreasureKind.HELMET));

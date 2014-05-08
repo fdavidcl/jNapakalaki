@@ -23,7 +23,9 @@ public class Napakalaki {
     
     private static final Napakalaki instance = new Napakalaki();
     
-    private Napakalaki() {}
+    private Napakalaki(){
+        players = new ArrayList();
+    }
     
     private void initPlayers (ArrayList<String> names){
         for (String p: names){

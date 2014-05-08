@@ -26,6 +26,8 @@ public class Player {
     
     Player(String name) {
         this.name = name;
+        hiddenTreasures = new ArrayList();
+        visibleTreasures = new ArrayList();
     }
     
     private void bringToLife() {
