@@ -102,18 +102,16 @@ public class TextUI {
             // Revisar esta línea para que haya coherencia con lo entregado en Ruby
             System.out.print("Luchando contra " + game.getCurrentMonster()
                 + "\nSi vences obtendrás: " + game.getCurrentMonster().getPrize().toString()
-                + "\nSi pierdes: " + game.getCurrentMonster().getBadConsequence());
+                + "\nSi pierdes: " + game.getCurrentMonster().getBadConsequence() + '\n');
         }
     }
     
     private <T> void list(ArrayList<T> l, boolean indexed){
-        System.out.print("\n[ ");
         for (int i=0; i<l.size(); ++i){
             if (indexed)
                 System.out.print('['+ Integer.toString(i+1) +']');
-            System.out.print(l.get(i).toString() + ' ');
+            System.out.println(l.get(i).toString());
         }
-        System.out.print("]\n");
     }
     
     // Esto funcionará???
@@ -122,13 +120,13 @@ public class TextUI {
         
         Map<String,ArrayList<Game.Treasure>> treasures = new HashMap();
         treasures.put("visibles",game.getVisibleTreasures());
-        treasures.put("hidden", game.getHiddenTreasures());
+        treasures.put("ocultos", game.getHiddenTreasures());
         
         for (String type : treasures.keySet()){
             if (treasures.get(type).isEmpty())
-                System.out.println("¡No tienes tesoros" + type + '!');
+                System.out.println("¡No tienes tesoros " + type + '!');
             else{
-                System.out.println("Tienes estos tesoros:");
+                System.out.println("Tienes estos tesoros " + type + ':');
                 list(treasures.get(type), false);
             }
         }       
@@ -160,6 +158,7 @@ public class TextUI {
             int index = 1;
                     
             while (index > 0){
+                list(treasures, true);
                 System.out.println("Seleccionados hasta el momento: ");
                 list(result, false);
                 System.out.println("\t [0] Terminar selección");
@@ -181,7 +180,7 @@ public class TextUI {
         else{
             list(treasures,true);
             System.out.print("\t Tesoro a equipar: ");
-            int i = getInt(1, treasures.size());
+            int i = getInt(1, treasures.size()) -1;
             
             if (!game.makeTreasureVisible(treasures.get(i)))
                 System.out.println("\t No puedes hacer visible este tesoro");
@@ -209,7 +208,7 @@ public class TextUI {
                 msg = "Has perdido tu combate, y el monstruo te ha matado";
                 break;
         }
-        System.out.print(msg + '\n');
+        System.out.println(msg);
     }
     
     public void play(){
@@ -238,7 +237,7 @@ public class TextUI {
             throw new IllegalStateException("El número de jugadores debe estar entre 1 y 3.");
         
         game.initGame(players);
-        /*
+        
         while (!gameOver){
             player = game.getCurrentPlayer();
             
@@ -277,7 +276,7 @@ public class TextUI {
                             discardTreasure(player.getVisibleTreasures(), true);
                             break;
                         case 3:
-                            discardTreasure(player.getHiddenTreasures(), true);
+                            discardTreasure(player.getHiddenTreasures(), false);
                             break;
                         case 4:
                             makeVisible(player.getHiddenTreasures());
@@ -289,20 +288,15 @@ public class TextUI {
                             System.out.println("Opctión " + option + "inválida."
                                 + "Utiliza [0] para seguir jugando.");
                     }
-                    
                     if (fight)
                         pause();
-                    
-                    while (!game.nextTurn()){
-                        // mal rollo pendiente
-                    }
                 }
             }
             else{
                 System.out.println("¡¡¡¡ Ganador:" + game.getCurrentPlayer().getName() + "!!!!");
                 gameOver = true;
             }
-        }*/
+        }
     }
     
     public static void main(String [ ] args){ 

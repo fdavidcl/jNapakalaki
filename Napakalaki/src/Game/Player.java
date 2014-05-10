@@ -19,7 +19,7 @@ import java.util.Collections;
 public class Player {
     private boolean dead = true;
     private String name;
-    private int level;
+    private int level = 1;
     private ArrayList<Treasure> hiddenTreasures;
     private ArrayList<Treasure> visibleTreasures;
     private BadConsequence pendingBadConsequence;
@@ -172,7 +172,7 @@ public class Player {
     }
     
     public void discardHiddenTreasure(Treasure t){
-        discardTreasure(visibleTreasures, t, false);
+        discardTreasure(hiddenTreasures, t, false);
     }
     
     public boolean buyLevels(ArrayList<Treasure> v, ArrayList<Treasure> h) {
