@@ -139,7 +139,7 @@ public class BadConsequence {
                 if (Collections.frequency(losthid,t) < Collections.frequency(ht,t))
                     losthid.add(t);
         }
-
+        
         return new BadConsequence(text,0,lostvis,losthid);
     }
 
