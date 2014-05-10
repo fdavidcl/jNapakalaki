@@ -47,6 +47,8 @@ public class Player {
     }
     
     private void die(){
+        dead = true;
+        
         for (Treasure t : visibleTreasures)
             CardDealer.getInstance().giveTreasureBack(t);
         
