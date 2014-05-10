@@ -7,6 +7,7 @@
 package TextUI;
 
 import Game.CombatResult;
+import Game.Treasure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,6 +29,10 @@ public class TextUI {
     private final BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     private final String ESC = "\u001B";
 
+    interface Predicate {
+        boolean test(Treasure t);
+    }
+    
     private TextUI() {}
 
     public static TextUI getInstance() {
@@ -120,7 +125,6 @@ public class TextUI {
     }
 
     private <T> void list(ArrayList<T> l, boolean indexed) {
-        System.out.print(l.toString());
         for (int i = 0; i < l.size(); ++i) {
             if (indexed)
                 System.out.print("\t["+ Integer.toString(i+1) +"] ");
@@ -146,6 +150,35 @@ public class TextUI {
         }
     }
 
+    private ArrayList<Game.Treasure> selectTreasures(ArrayList<Game.Treasure> treasures,
+        boolean visibles, Predicate condition) {
+        ArrayList<Game.Treasure> result = new ArrayList();
+        String type = (visibles ? "visibles" : "ocultos");
+
+        if (!treasures.isEmpty()) {
+            System.out.println("¿Qué tesoros " + type + " quieres emplear?");
+            int index = 1;
+
+            while (index > 0 && treasures.size() > 0) {
+                System.out.println("Seleccionados hasta el momento: " + result.toString());
+                list(treasures, true);
+                System.out.println("\t[0] Terminar selección");
+
+                index = getInt(0, treasures.size());
+                if (index > 0)
+                    if (condition.test(treasures.get(index - 1)))
+                        result.add(treasures.remove(index - 1));
+                    else
+                        System.out.println(red("No puedes utilizar este tesoro."));
+            }
+        }
+        else
+            System.out.println("¡No tienes tesoros " + type + '!');
+
+        return result;
+    }
+
+    /*
     private void discardTreasure(ArrayList<Game.Treasure> treasures, boolean visibles) {
         String type = (visibles ? "visibles" : "ocultos");
 
@@ -163,36 +196,10 @@ public class TextUI {
         }
     }
 
-    private ArrayList<Game.Treasure> treasureSelect(ArrayList<Game.Treasure> treasures,
-        boolean visibles, Function condition) {
-        ArrayList<Game.Treasure> result = new ArrayList();
-        String type = (visibles ? "visibles" : "ocultos");
-
-        if (!treasures.isEmpty()) {
-            System.out.println("¿Qué tesoros " + type + " quieres emplear?");
-            int index = 1;
-
-            while (index > 0) {
-                list(treasures, true);
-                System.out.println("Seleccionados hasta el momento: ");
-                list(result, false);
-                System.out.println("\t [0] Terminar selección");
-
-                index = getInt(0, treasures.size());
-                if (index > 0)
-                    result.add(treasures.remove(index - 1));
-            }
-        }
-        else
-            System.out.println("¡No tienes tesoros " + type + '!');
-
-        return result;
-    }
-
     private void makeVisible(ArrayList<Game.Treasure> treasures) {
         if (treasures.isEmpty())
             System.out.println("\t ¡No dispones de tesoros para equipar!");
-        else{
+        else {
             list(treasures,true);
             System.out.print("\t Tesoro a equipar: ");
 
@@ -200,7 +207,7 @@ public class TextUI {
             if (!game.makeTreasureVisible(treasures.get(i)))
                 System.out.println("\t No puedes hacer visible este tesoro");
         }
-    }
+    }*/
 
     private void printCombatResult(Game.CombatResult result) {
         System.out.print("\t ---> ");
@@ -259,8 +266,10 @@ public class TextUI {
             display (fight);
             System.out.println("Antes de luchar puedes comprar niveles.");
 
-            if (game.buyLevels(treasureSelect(player.getVisibleTreasures(),true),
-                treasureSelect(player.getHiddenTreasures(), false)))
+            if (game.buyLevels(selectTreasures(player.getVisibleTreasures(),true,
+                    new Predicate(){public boolean test(Treasure t) {return true;}}),
+                    selectTreasures(player.getHiddenTreasures(), false,
+                    new Predicate(){public boolean test(Treasure t) {return true;}})))
                 System.out.println("Has comprado los niveles");
             else
                 System.out.println("No puedes comprar tantos niveles");
@@ -288,13 +297,27 @@ public class TextUI {
                             inspectTreasures();
                             break;
                         case 2:
-                            discardTreasure(player.getVisibleTreasures(), true);
+                            //discardTreasure(player.getVisibleTreasures(), true);
+                            selectTreasures(player.getVisibleTreasures(), true,
+                                new Predicate(){public boolean test(Treasure t) {
+                                    game.discardVisibleTreasure(t);
+                                    return true;
+                                }});
                             break;
                         case 3:
-                            discardTreasure(player.getHiddenTreasures(), false);
+                            selectTreasures(player.getHiddenTreasures(), false,
+                                new Predicate(){public boolean test(Treasure t) {
+                                    game.discardHiddenTreasure(t);
+                                    return true;
+                                }});
                             break;
                         case 4:
-                            makeVisible(player.getHiddenTreasures());
+                            // makeVisible(player.getHiddenTreasures());
+                            
+                            selectTreasures(player.getHiddenTreasures(), false,
+                                new Predicate(){public boolean test(Treasure t) {
+                                    return game.makeTreasureVisible(t);
+                                }});
                             break;
                         case 0:
                             fight = false;
@@ -303,7 +326,7 @@ public class TextUI {
                             System.out.println("Opctión " + option + "inválida."
                                 + "Utiliza [0] para seguir jugando.");
                     }
-                    
+
                     if (fight)
                         pause();
                 }
