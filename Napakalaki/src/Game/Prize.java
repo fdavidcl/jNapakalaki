@@ -14,7 +14,7 @@ package Game;
 public class Prize {
     private int treasures;
     private int levels;
-    
+
     Prize(int treasures, int levels) {
         this.treasures = treasures;
         this.levels = levels;
@@ -40,7 +40,7 @@ public class Prize {
      * Pasa el buen rollo a una cadena
      * @return Cadena que representa el buen rollo
      */
-    public String toString(){
+    public String toString() {
         return "Tesoros: " + Integer.toString(treasures) + ", Niveles: " + Integer.toString(levels);
     }
 }

@@ -20,14 +20,14 @@ public class CardDealer {
     private ArrayList<Treasure> usedTreasures;
     private ArrayList<Treasure> unusedTreasures;
     private static final CardDealer instance = new CardDealer();
-    
-    private CardDealer(){
+
+    private CardDealer() {
         usedMonsters = new ArrayList();
         unusedMonsters = new ArrayList();
         usedTreasures = new ArrayList();
         unusedTreasures = new ArrayList();
     }
-    
+
     private void initTreasureCardDeck() {
         unusedTreasures.add(new Treasure ("¡Sí mi amo!",0,4,7,TreasureKind.HELMET));
         unusedTreasures.add(new Treasure ("Botas de investigación",600,3,4,TreasureKind.SHOE));
@@ -62,19 +62,19 @@ public class CardDealer {
         unusedTreasures.add(new Treasure("Shogulador", 600, 1, 1, TreasureKind.BOTHHANDS));
         unusedTreasures.add(new Treasure("Varita de atizamiento", 400, 3, 4, TreasureKind.ONEHAND));
     }
-    
+
     private void initMonsterCardDeck() {
         ArrayList<TreasureKind> tv = new ArrayList();
         ArrayList<TreasureKind> to = new ArrayList();
         tv.add(TreasureKind.ARMOR);
         to.add(TreasureKind.ARMOR);
-        
+
         unusedMonsters.add(new Monster("3 Byakhees de bonanza",8,new BadConsequence
             ("Pierdes tu armadura visible y otra oculta",0,tv,to),new Prize(2,1))
         );
-        
+
         unusedMonsters.get(0).name = "LOLOLOLOL";
-        
+
         tv.clear();
         to.clear();
         tv.add(TreasureKind.HELMET);
@@ -126,7 +126,7 @@ public class CardDealer {
         tv.clear();
         tv.add(TreasureKind.ONEHAND);
         unusedMonsters.add(new Monster ("Dameargo",1, new BadConsequence
-            ("Te intentas escaquear. Pierdes una mano visible",0,tv,to), 
+            ("Te intentas escaquear. Pierdes una mano visible",0,tv,to),
             new Prize (2,1))
         );
         unusedMonsters.add(new Monster ("Pollipólipo volante",3, new BadConsequence
@@ -148,7 +148,7 @@ public class CardDealer {
         tv.clear();
         tv.add(TreasureKind.HELMET);
         unusedMonsters.add(new Monster ("El espia ciego",4, new BadConsequence
-            ("Te asusta en la noche. Pierdes un casco visible",0,tv,to), 
+            ("Te asusta en la noche. Pierdes un casco visible",0,tv,to),
             new Prize (1,1))
         );
         unusedMonsters.add(new Monster ("El lenguas",20, new BadConsequence
@@ -161,55 +161,55 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
-        
-        
+
+
     }
-    
-    private void shuffleTreasures(){
+
+    private void shuffleTreasures() {
         Collections.shuffle(unusedTreasures);
     }
-    
-    private void shuffleMonsters(){
+
+    private void shuffleMonsters() {
         Collections.shuffle(unusedMonsters);
     }
-    
+
     public static CardDealer getInstance() {
         return instance;
     }
-    
+
     public Treasure nextTreasure() {
         Treasure result = unusedTreasures.remove(0);
-        
-        if (unusedTreasures.isEmpty()){
+
+        if (unusedTreasures.isEmpty()) {
             unusedTreasures = (ArrayList<Treasure>)usedTreasures.clone();
             usedTreasures.clear();
             shuffleTreasures();
         }
-        
+
         return result;
     }
-    
+
     public Monster nextMonster() {
         Monster result = unusedMonsters.remove(0);
-        
-        if (unusedMonsters.isEmpty()){
+
+        if (unusedMonsters.isEmpty()) {
             unusedMonsters = (ArrayList<Monster>)usedMonsters.clone();
             usedMonsters.clear();
             shuffleMonsters();
         }
-        
+
         return result;
     }
-    
-    public void giveTreasureBack(Treasure t){
+
+    public void giveTreasureBack(Treasure t) {
         usedTreasures.add(t);
     }
-    
-    public void giveMonsterBack(Monster m){
+
+    public void giveMonsterBack(Monster m) {
         usedMonsters.add(m);
     }
-    
-    public void initCards(){
+
+    public void initCards() {
         initMonsterCardDeck();
         shuffleMonsters();
         initTreasureCardDeck();

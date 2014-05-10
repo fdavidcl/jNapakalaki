@@ -17,7 +17,7 @@ public class Treasure {
     private int minBonus;
     private int maxBonus;
     private TreasureKind type;
-    
+
     Treasure(String n, int g, int min, int max, TreasureKind t) {
         name = n;
         goldCoins = g;
@@ -25,7 +25,7 @@ public class Treasure {
         maxBonus = max;
         type = t;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -45,8 +45,8 @@ public class Treasure {
     public TreasureKind getType() {
         return type;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return type.toString().toUpperCase() + " \"" + name + " \"" + goldCoins + "oro" +
             (type != TreasureKind.NECKLACE ? ", +" + minBonus + "/+" + maxBonus + "bonus)": ")");
     }
