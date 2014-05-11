@@ -11,10 +11,7 @@ import Game.Treasure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.FileSystemAlreadyExistsException;
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +36,8 @@ public class TextUI {
         return instance;
     }
 
+    // Métodos de formato: Devuelven una string con el formato
+    // aplicado a la inicial
     private String bold(String msg) {
         return ESC + "[1m" + msg + ESC + "[m";
     }
@@ -51,6 +50,8 @@ public class TextUI {
         return ESC + "[31m" + msg + ESC + "[m";
     }
 
+    // Métodos de entrada: devuelven una entrada válida del tipo
+    // especificado
     private String getString() {
         String input = "";
         System.out.print(" > ");
@@ -84,8 +85,13 @@ public class TextUI {
         System.out.print("Intro para continuar");
         getString();
     }
-
+    
+    // Mostrar estado del juego
     private void display(boolean fight) {
+        // Limpiamos la pantalla (funciona solo en terminal, no
+        // en Netbeans)
+        System.out.print(ESC + "[H" + ESC + "[2J");
+        
         System.out.println(invert(bold("       Napakalaki       ")));
         System.out.println("Jugando: " + game.getCurrentPlayer().getName() + " (nivel "
                 + game.getCurrentPlayer().getCombatLevel() + ")");
@@ -98,6 +104,7 @@ public class TextUI {
         }
     }
 
+    // Métodos de consulta y modificación de tesoros
     private <T> void list(ArrayList<T> l, boolean indexed) {
         for (int i = 0; i < l.size(); ++i) {
             if (indexed)
@@ -149,6 +156,7 @@ public class TextUI {
         return result;
     }
 
+    // Método de consulta de resultados de combate
     private String combatResult(Game.CombatResult result) {
         String msg = "";
 
@@ -174,9 +182,9 @@ public class TextUI {
     }
 /****************
  * TODO
- * Comprobar cálculo del nivel de combate del jugador
+ * HECHO! Comprobar cálculo del nivel de combate del jugador
  * Comprobar lanzamiento de dados (el jugador escapa muy fácilmente...)
- * Comprobar por qué no tengo que cumplir malos rollos de número :S
+ * HECHO! Comprobar por qué no tengo que cumplir malos rollos de número :S
  */
     public void play() {
         ArrayList<String> players = new ArrayList();
@@ -211,14 +219,13 @@ public class TextUI {
             display(false);
             System.out.println("Antes de luchar puedes comprar niveles.");
 
-            if (game.buyLevels(selectTreasures(player.getVisibleTreasures(),true,
+            if (!game.buyLevels(selectTreasures(player.getVisibleTreasures(),true,
                     new Predicate(){public boolean test(Treasure t) {return true;}}),
                     selectTreasures(player.getHiddenTreasures(), false,
-                    new Predicate(){public boolean test(Treasure t) {return true;}})))
-                // Esto aparece cuando no compras ningún nivel!
-                System.out.println("Has comprado los niveles");
-            else
+                    new Predicate(){public boolean test(Treasure t) {return true;}}))) {
                 System.out.println("No puedes comprar tantos niveles");
+                pause();
+            }
 
             display(true);
 

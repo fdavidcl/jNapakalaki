@@ -73,8 +73,6 @@ public class CardDealer {
             ("Pierdes tu armadura visible y otra oculta",0,tv,to),new Prize(2,1))
         );
 
-        unusedMonsters.get(0).name = "LOLOLOLOL";
-
         tv.clear();
         to.clear();
         tv.add(TreasureKind.HELMET);
