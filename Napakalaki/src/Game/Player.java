@@ -231,9 +231,9 @@ public class Player {
                 sum += t.getMaxBonus();
         else
             for (Treasure t:visibleTreasures)
-               sum += t.getMinBonus();
+                sum += t.getMinBonus();
 
-        return level;
+        return sum;
     }
 
     public ArrayList<Treasure> getHiddenTreasures() {
