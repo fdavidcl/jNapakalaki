@@ -82,7 +82,7 @@ public class TextUI {
     }
 
     private void pause() {
-        System.out.print("Intro para continuar");
+        System.out.print("(Intro para continuar)");
         getString();
     }
     
@@ -105,11 +105,9 @@ public class TextUI {
     }
 
     // Métodos de consulta y modificación de tesoros
-    private <T> void list(ArrayList<T> l, boolean indexed) {
+    private <T> void list(ArrayList<T> l) {
         for (int i = 0; i < l.size(); ++i) {
-            if (indexed)
-                System.out.print("\t["+ Integer.toString(i+1) +"] ");
-            System.out.println(l.get(i).toString());
+            System.out.println("\t["+ Integer.toString(i+1) +"] " + l.get(i).toString());
         }
     }
 
@@ -123,7 +121,7 @@ public class TextUI {
                 System.out.println("¡No tienes tesoros " + type + '!');
             else{
                 System.out.println("Tienes estos tesoros " + type + ':');
-                list(treasures.get(type), false);
+                list(treasures.get(type));
             }
         }
     }
@@ -131,7 +129,7 @@ public class TextUI {
     private ArrayList<Game.Treasure> selectTreasures(ArrayList<Game.Treasure> treasures,
         boolean visibles, Predicate condition) {
         ArrayList<Game.Treasure> result = new ArrayList();
-        String type = (visibles ? "visibles" : "ocultos");
+        String type = (visibles ? "equipados" : "ocultos");
 
         if (!treasures.isEmpty()) {
             System.out.println(bold("¿Qué tesoros " + type + " quieres emplear?"));
@@ -139,7 +137,7 @@ public class TextUI {
 
             while (index > 0 && treasures.size() > 0) {
                 System.out.println("Seleccionados hasta el momento: " + result.toString());
-                list(treasures, true);
+                list(treasures);
                 System.out.println("\t[0] Terminar selección");
 
                 index = getInt(0, treasures.size());
@@ -233,7 +231,7 @@ public class TextUI {
             display(true);
 
             result = game.combat();
-            System.out.println("Resultado: " + combatResult(result));
+            System.out.println("Resultado: " + bold(combatResult(result)));
             pause();
             
             boolean nextTurn = false;
@@ -242,19 +240,22 @@ public class TextUI {
                 while(!nextTurn) {
                     display(false);
                     
+                    // El jugador podría haber muerto tras descartarse tesoros
+                    // o bien como resultado del combate
                     if (player.isDead()) {
                         System.out.println(bold("¡Has muerto!") + " Revivirás en tu "
-                            + "siguiente turno con nuevos tesoros.");
+                            + "próximo turno con nuevos tesoros.");
                         nextTurn = true;
                         pause();
                     } else {
+                        // Mostramos un menú
                         System.out.println(bold("¿Qué quieres hacer? \n") +
                             " [1] Ver inventario \n" +
                             " [2] Descartar tesoro equipado \n" +
                             " [3] Descartar tesoro oculto \n" +
                                 (game.nextTurnAllowed() ? 
-                                    " [4] Equipar un tesoro\n*[0] Seguir jugando\n" :
-                                    "*[0] Consultar mal rollo pendiente\n"));
+                                    " [4] Equipar un tesoro\n [0] Seguir jugando" :
+                                    " [0] Consultar mal rollo pendiente"));
                         option = getInt(0,game.nextTurnAllowed() ? 4 : 3);
 
                         switch(option) {
