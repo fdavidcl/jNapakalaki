@@ -100,7 +100,7 @@ public class CardDealer {
         to.clear();
         // Nótese que perder totalidad tesoros == perder máximo (entero) de tesoros
         unusedMonsters.add(new Monster ("El gorrón en el umbral",10, new BadConsequence
-            ("Pierdes todos tus tesoros visibles",0,Integer.MAX_VALUE,0), new Prize (3,1))
+            ("Pierdes todos tus tesoros visibles",0,-1,0), new Prize (3,1))
         );
         tv.add(TreasureKind.ARMOR);
         unusedMonsters.add(new Monster ("H.P. Munchcraft",6, new BadConsequence
@@ -155,9 +155,14 @@ public class CardDealer {
             ("Menudo susto te llevas. Pierdes 2 niveles y 5 tesoros visibles",
             2,5,0), new Prize (1,1))
         );
+        tv.clear();
+        tv.add(TreasureKind.BOTHHANDS);
+        tv.add(TreasureKind.ONEHAND);
+        tv.add(TreasureKind.ONEHAND);
+        to.clear();
         unusedMonsters.add(new Monster ("Bicéfalo",20, new BadConsequence
-            ("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros"
-            + "visibles de las manos",3, Integer.MAX_VALUE,0), new Prize (1,1))
+            ("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros "
+            + "visibles de las manos",3, tv, to), new Prize (1,1))
         );
         tv.clear();
         to.clear();

@@ -127,14 +127,17 @@ public class BadConsequence {
 
 
         if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()) {
-            int vlimit = min(nVisibleTreasures, specificVisibleTreasures.size()) - 1;
-            int hlimit = min(nHiddenTreasures, specificHiddenTreasures.size()) - 1;
+            int vlimit = (nVisibleTreasures > -1 ? min(nVisibleTreasures, vis.size()) : vis.size());
+            int hlimit = (nHiddenTreasures > -1 ? min(nHiddenTreasures, hid.size()) : hid.size());
 
+            System.out.println(vlimit);
+            System.out.println(hlimit);
+            
             if (vlimit > 0)
-                lostvis = (ArrayList<TreasureKind>) vt.subList(0, vlimit);
+                lostvis = new ArrayList<TreasureKind>(vt.subList(0, vlimit));
 
             if (hlimit > 0)
-                losthid = (ArrayList<TreasureKind>) ht.subList(0, hlimit);
+                losthid = new ArrayList<TreasureKind>(ht.subList(0, hlimit));
         }
         else {
             for (TreasureKind t : specificVisibleTreasures)
@@ -154,12 +157,17 @@ public class BadConsequence {
      * @return Cadena con información del mal rollo
      */
     public String toString() {
-        return text + ": Niveles: " + Integer.toString(levels)
-                + ", Tesoros visibles: " + (specificVisibleTreasures.isEmpty() ?
-                    Integer.toString(nVisibleTreasures) : specificVisibleTreasures.toString())
-                + ", Tesoros ocultos: " + (specificHiddenTreasures.isEmpty() ?
-                    Integer.toString(nHiddenTreasures) : specificHiddenTreasures.toString())
-                + ", Muerte: " + (death ? "Sí": "No");
+        String visibles = specificVisibleTreasures.isEmpty() ?
+                (nVisibleTreasures > -1 ? Integer.toString(nVisibleTreasures) : "Todos") :
+                specificVisibleTreasures.toString();
+        String ocultos = specificHiddenTreasures.isEmpty() ?
+                (nHiddenTreasures > -1 ? Integer.toString(nHiddenTreasures) : "Todos") :
+                specificHiddenTreasures.toString();
+            
+        return text + ": Niveles: " + Integer.toString(levels) +
+                ", Tesoros visibles: " + visibles +
+                ", Tesoros ocultos: " + ocultos +
+                ", Muerte: " + (death ? "Sí": "No");
     }
 
 }
