@@ -193,22 +193,24 @@ public class TextUI {
         CombatResult result;
         int option;
 
- /////////////
+ ////////////
+        /*
         players.add ("Nacho");
         players.add ("David");
         players.add ("Batman");
-// DEPURACIÓN
-/*
-        System.out.println("Introduce nombre de los jugadores: ");
-        while(read) {
+*/// DEPURACIÓN
+
+        System.out.println("Introduce nombre de los jugadores");
+        
+        // Se permiten 3 jugadores como máximo
+        while (read && players.size() < 3) {
             String p = getString();
             if (p.equals("\n") || p.isEmpty())
                 read = false;
             else
                 players.add(p);
         }
-*/
-        // Se permiten 3 jugadores como máximo
+
         if (players.isEmpty() || players.size() > 3)
             throw new IllegalStateException("El número de jugadores debe estar entre 1 y 3.");
 
