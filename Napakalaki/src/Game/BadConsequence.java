@@ -129,10 +129,10 @@ public class BadConsequence {
         if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()) {
             int vlimit = min(nVisibleTreasures, specificVisibleTreasures.size()) - 1;
             int hlimit = min(nHiddenTreasures, specificHiddenTreasures.size()) - 1;
-            
+
             if (vlimit > 0)
                 lostvis = (ArrayList<TreasureKind>) vt.subList(0, vlimit);
-            
+
             if (hlimit > 0)
                 losthid = (ArrayList<TreasureKind>) ht.subList(0, hlimit);
         }
@@ -145,7 +145,7 @@ public class BadConsequence {
                 if (Collections.frequency(losthid,t) < Collections.frequency(ht,t))
                     losthid.add(t);
         }
-        
+
         return new BadConsequence(text,0,lostvis,losthid);
     }
 
