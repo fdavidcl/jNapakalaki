@@ -129,9 +129,6 @@ public class BadConsequence {
         if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()) {
             int vlimit = (nVisibleTreasures > -1 ? min(nVisibleTreasures, vis.size()) : vis.size());
             int hlimit = (nHiddenTreasures > -1 ? min(nHiddenTreasures, hid.size()) : hid.size());
-
-            System.out.println(vlimit);
-            System.out.println(hlimit);
             
             if (vlimit > 0)
                 lostvis = new ArrayList<TreasureKind>(vt.subList(0, vlimit));
