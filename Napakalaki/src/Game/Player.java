@@ -47,6 +47,7 @@ public class Player {
     }
 
     private void die() {
+        level = 1;
         dead = true;
 
         for (Treasure t : visibleTreasures)
