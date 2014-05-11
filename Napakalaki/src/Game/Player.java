@@ -225,8 +225,13 @@ public class Player {
 
     public int getCombatLevel() {
         int sum = this.level;
+        boolean usingNecklace = false;
+        
+        for (Treasure t : visibleTreasures)
+            if (t.getType() == TreasureKind.NECKLACE)
+                usingNecklace = true;
 
-        if (visibleTreasures.contains(TreasureKind.NECKLACE))
+        if (usingNecklace)
             for (Treasure t : visibleTreasures)
                 sum += t.getMaxBonus();
         else
