@@ -32,7 +32,7 @@ public class TextUI {
     interface Predicate {
         boolean test(Treasure t);
     }
-    
+
     private TextUI() {}
 
     public static TextUI getInstance() {
@@ -112,7 +112,7 @@ public class TextUI {
     }
 
     private void display(boolean fight) {
-        System.out.println("       Napakalaki       ");
+        System.out.println(invert(bold("       Napakalaki       ")));
         System.out.println("Jugando: " + game.getCurrentPlayer().getName() + " (nivel "
                 + game.getCurrentPlayer().getCombatLevel() + ")");
 
@@ -156,7 +156,7 @@ public class TextUI {
         String type = (visibles ? "visibles" : "ocultos");
 
         if (!treasures.isEmpty()) {
-            System.out.println("¿Qué tesoros " + type + " quieres emplear?");
+            System.out.println(bold("¿Qué tesoros " + type + " quieres emplear?"));
             int index = 1;
 
             while (index > 0 && treasures.size() > 0) {
@@ -270,6 +270,7 @@ public class TextUI {
                     new Predicate(){public boolean test(Treasure t) {return true;}}),
                     selectTreasures(player.getHiddenTreasures(), false,
                     new Predicate(){public boolean test(Treasure t) {return true;}})))
+                // Esto aparece cuando no compras ningún nivel!
                 System.out.println("Has comprado los niveles");
             else
                 System.out.println("No puedes comprar tantos niveles");
@@ -284,7 +285,7 @@ public class TextUI {
                 while(fight) {
                     display(!fight);
 
-                    System.out.println("¿Qué quieres hacer? \n" +
+                    System.out.println(bold("¿Qué quieres hacer? \n") +
                         " [1] Ver inventario \n" +
                         " [2] Descartar tesoro equipado \n" +
                         " [3] Descartar tesoro oculto \n" +
@@ -313,7 +314,7 @@ public class TextUI {
                             break;
                         case 4:
                             // makeVisible(player.getHiddenTreasures());
-                            
+
                             selectTreasures(player.getHiddenTreasures(), false,
                                 new Predicate(){public boolean test(Treasure t) {
                                     return game.makeTreasureVisible(t);

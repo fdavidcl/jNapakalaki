@@ -161,12 +161,10 @@ public class Player {
 
         if (t.getType() == TreasureKind.ONEHAND)
             return (!vt.contains(TreasureKind.BOTHHANDS) && (Collections.frequency(vt, TreasureKind.ONEHAND)<2));
-        else{
-            if (t.getType() == TreasureKind.BOTHHANDS)
-                return (!vt.contains(TreasureKind.BOTHHANDS) && vt.contains(TreasureKind.ONEHAND));
-            else
-                return !vt.contains(t.getType());
-        }
+        else if (t.getType() == TreasureKind.BOTHHANDS)
+            return (!vt.contains(TreasureKind.BOTHHANDS) && !vt.contains(TreasureKind.ONEHAND));
+        else
+            return !vt.contains(t.getType());
     }
 
     public void discardVisibleTreasure(Treasure t) {

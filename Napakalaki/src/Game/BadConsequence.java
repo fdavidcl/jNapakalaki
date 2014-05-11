@@ -127,8 +127,14 @@ public class BadConsequence {
 
 
         if (specificVisibleTreasures.isEmpty() && specificHiddenTreasures.isEmpty()) {
-            lostvis = (ArrayList<TreasureKind>) vt.subList(0,min(nVisibleTreasures-1,specificVisibleTreasures.size()-1));
-            losthid = (ArrayList<TreasureKind>) ht.subList(0,min(nHiddenTreasures-1,specificHiddenTreasures.size()-1));
+            int vlimit = min(nVisibleTreasures, specificVisibleTreasures.size()) - 1;
+            int hlimit = min(nHiddenTreasures, specificHiddenTreasures.size()) - 1;
+            
+            if (vlimit > 0)
+                lostvis = (ArrayList<TreasureKind>) vt.subList(0, vlimit);
+            
+            if (hlimit > 0)
+                losthid = (ArrayList<TreasureKind>) ht.subList(0, hlimit);
         }
         else {
             for (TreasureKind t : specificVisibleTreasures)
