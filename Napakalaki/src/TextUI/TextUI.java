@@ -178,27 +178,13 @@ public class TextUI {
         
         return msg;
     }
-/****************
- * TODO
- * HECHO! Comprobar cálculo del nivel de combate del jugador
- * Comprobar lanzamiento de dados (el jugador escapa muy fácilmente...)
- * HECHO! Comprobar por qué no tengo que cumplir malos rollos de número :S
- */
     
     // Método de juego: Muestra menús e interactúa con el jugador
     public void play() {
         ArrayList<String> players = new ArrayList();
         boolean read = true, gameOver = false;
-        Game.Player player = null;
         CombatResult result;
         int option;
-
- ////////////
-        /*
-        players.add ("Nacho");
-        players.add ("David");
-        players.add ("Batman");
-*/// DEPURACIÓN
 
         System.out.println("Introduce nombre de los jugadores");
         
@@ -217,8 +203,9 @@ public class TextUI {
         game.initGame(players);
 
         while (!gameOver) {
-            player = game.getCurrentPlayer();
-
+            Game.Player player = game.getCurrentPlayer();
+            
+            // Pre-lucha: El jugador puede comprar niveles
             display(false);
             System.out.println("Antes de luchar puedes comprar niveles.");
 
@@ -230,12 +217,14 @@ public class TextUI {
                 pause();
             }
 
+            // Comenzar lucha
             display(true);
 
             result = game.combat();
             System.out.println("Resultado: " + bold(combatResult(result)));
             pause();
             
+            // Post-lucha
             boolean nextTurn = false;
 
             if (!game.endOfGame(result)) {
@@ -261,30 +250,30 @@ public class TextUI {
                         option = getInt(0,game.nextTurnAllowed() ? 4 : 3);
 
                         switch(option) {
-                            case 1:
+                            case 1: // Consulta de tesoros
                                 inspectTreasures();
                                 break;
-                            case 2:
+                            case 2: // Descarte de tesoros equipados
                                 selectTreasures(player.getVisibleTreasures(), true,
                                     new Predicate(){public boolean test(Treasure t) {
                                         game.discardVisibleTreasure(t);
                                         return true;
                                     }});
                                 break;
-                            case 3:
+                            case 3: // Descarte de tesoros ocultos
                                 selectTreasures(player.getHiddenTreasures(), false,
                                     new Predicate(){public boolean test(Treasure t) {
                                         game.discardHiddenTreasure(t);
                                         return true;
                                     }});
                                 break;
-                            case 4:
+                            case 4: // Equipar un tesoro
                                 selectTreasures(player.getHiddenTreasures(), false,
                                     new Predicate(){public boolean test(Treasure t) {
                                         return game.makeTreasureVisible(t);
                                     }});
                                 break;
-                            case 0:
+                            case 0: // Acción de continuar (si no hay mal rollo pendiente)
                                 if (game.nextTurnAllowed())
                                     nextTurn = true;
                                 else {
@@ -305,8 +294,8 @@ public class TextUI {
                 
                 game.nextTurn();
             }
-            else{
-                System.out.println(bold("¡¡¡¡ Ganador:" + game.getCurrentPlayer().getName() + "!!!!"));
+            else {
+                System.out.println(bold("¡¡¡¡ Ganador:" + player.getName() + "!!!!"));
                 gameOver = true;
             }
         }
