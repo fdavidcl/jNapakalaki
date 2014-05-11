@@ -104,7 +104,7 @@ public class Player {
     public void applyPrize(Prize p) {
         incrementLevels(p.getLevels());
 
-        for (int i=0; i<min(p.getTreasures(),4-hiddenTreasures.size());i++) {
+        for (int i=0; i<min(p.getTreasures(),4-hiddenTreasures.size()); i++) {
             hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
         }
     }
@@ -181,9 +181,9 @@ public class Player {
         ArrayList <Treasure> hidden = (ArrayList <Treasure>) h.clone();
 
         int levels = computeGoldCoinsValue(v) + computeGoldCoinsValue(h);
-        boolean canI;
+        boolean canI = canIBuyLevels(levels);
 
-        if (canI=canIBuyLevels(levels)) {
+        if (canI) {
             incrementLevels(levels);
 
             for (Treasure t : visible)
@@ -204,7 +204,7 @@ public class Player {
 
         if (number == 1)
             hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
-        else{
+        else {
             int limit = (number < 6 ? 2 : 3);
 
             for (int i=0; i<limit; ++i)

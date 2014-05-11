@@ -186,6 +186,8 @@ public class TextUI {
  * Comprobar lanzamiento de dados (el jugador escapa muy fácilmente...)
  * HECHO! Comprobar por qué no tengo que cumplir malos rollos de número :S
  */
+    
+    // Método de juego: Muestra menús e interactúa con el jugador
     public void play() {
         ArrayList<String> players = new ArrayList();
         boolean read = true, gameOver = false;
@@ -208,6 +210,7 @@ public class TextUI {
                 players.add(p);
         }
 */
+        // Se permiten 3 jugadores como máximo
         if (players.isEmpty() || players.size() > 3)
             throw new IllegalStateException("El número de jugadores debe estar entre 1 y 3.");
 
@@ -233,61 +236,68 @@ public class TextUI {
             System.out.println("Resultado: " + combatResult(result));
             pause();
             
-            boolean nextTurn = player.isDead();
+            boolean nextTurn = false;
 
             if (!game.endOfGame(result)) {
                 while(!nextTurn) {
                     display(false);
-
-                    System.out.println(bold("¿Qué quieres hacer? \n") +
-                        " [1] Ver inventario \n" +
-                        " [2] Descartar tesoro equipado \n" +
-                        " [3] Descartar tesoro oculto \n" +
-                            (game.nextTurnAllowed() ? 
-                                " [4] Equipar un tesoro\n*[0] Seguir jugando\n" :
-                                "*[0] Consultar mal rollo pendiente\n"));
-                    option = getInt(0,game.nextTurnAllowed() ? 4 : 3);
-
-                    switch(option) {
-                        case 1:
-                            inspectTreasures();
-                            break;
-                        case 2:
-                            selectTreasures(player.getVisibleTreasures(), true,
-                                new Predicate(){public boolean test(Treasure t) {
-                                    game.discardVisibleTreasure(t);
-                                    return true;
-                                }});
-                            break;
-                        case 3:
-                            selectTreasures(player.getHiddenTreasures(), false,
-                                new Predicate(){public boolean test(Treasure t) {
-                                    game.discardHiddenTreasure(t);
-                                    return true;
-                                }});
-                            break;
-                        case 4:
-                            selectTreasures(player.getHiddenTreasures(), false,
-                                new Predicate(){public boolean test(Treasure t) {
-                                    return game.makeTreasureVisible(t);
-                                }});
-                            break;
-                        case 0:
-                            if (game.nextTurnAllowed())
-                                nextTurn = true;
-                            else {
-                                System.out.println("Mal rollo pendiente:\n\t" + 
-                                    game.getCurrentMonster().getBadConsequence().toString() +
-                                    bold("\nDescarta los tesoros correspondientes para poder seguir jugando."));
-                            }
-                            break;
-                        default:
-                            System.out.println("Opción " + option + "inválida."
-                                + "Utiliza [0] para seguir jugando.");
-                    }
-
-                    if (!nextTurn)
+                    
+                    if (player.isDead()) {
+                        System.out.println(bold("¡Has muerto!") + " Revivirás en tu "
+                            + "siguiente turno con nuevos tesoros.");
+                        nextTurn = true;
                         pause();
+                    } else {
+                        System.out.println(bold("¿Qué quieres hacer? \n") +
+                            " [1] Ver inventario \n" +
+                            " [2] Descartar tesoro equipado \n" +
+                            " [3] Descartar tesoro oculto \n" +
+                                (game.nextTurnAllowed() ? 
+                                    " [4] Equipar un tesoro\n*[0] Seguir jugando\n" :
+                                    "*[0] Consultar mal rollo pendiente\n"));
+                        option = getInt(0,game.nextTurnAllowed() ? 4 : 3);
+
+                        switch(option) {
+                            case 1:
+                                inspectTreasures();
+                                break;
+                            case 2:
+                                selectTreasures(player.getVisibleTreasures(), true,
+                                    new Predicate(){public boolean test(Treasure t) {
+                                        game.discardVisibleTreasure(t);
+                                        return true;
+                                    }});
+                                break;
+                            case 3:
+                                selectTreasures(player.getHiddenTreasures(), false,
+                                    new Predicate(){public boolean test(Treasure t) {
+                                        game.discardHiddenTreasure(t);
+                                        return true;
+                                    }});
+                                break;
+                            case 4:
+                                selectTreasures(player.getHiddenTreasures(), false,
+                                    new Predicate(){public boolean test(Treasure t) {
+                                        return game.makeTreasureVisible(t);
+                                    }});
+                                break;
+                            case 0:
+                                if (game.nextTurnAllowed())
+                                    nextTurn = true;
+                                else {
+                                    System.out.println("Mal rollo pendiente:\n\t" + 
+                                        game.getCurrentMonster().getBadConsequence().toString() +
+                                        bold("\nDescarta los tesoros correspondientes para poder seguir jugando."));
+                                }
+                                break;
+                            default:
+                                System.out.println("Opción " + option + "inválida."
+                                    + "Utiliza [0] para seguir jugando.");
+                        }
+
+                        if (!nextTurn)
+                            pause();
+                    }
                 }
                 
                 game.nextTurn();
