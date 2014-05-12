@@ -7,7 +7,6 @@
 package TextUI;
 
 import Game.CombatResult;
-import Game.Prize;
 import Game.Treasure;
 import Game.TreasureKind;
 import java.io.BufferedReader;
