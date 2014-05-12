@@ -93,7 +93,6 @@ public class Napakalaki {
         return currentPlayer.getHiddenTreasures();
     }
 
-    @SuppressWarnings("empty-statement")
     public boolean nextTurn() {
         boolean stateOK = nextTurnAllowed();
 
