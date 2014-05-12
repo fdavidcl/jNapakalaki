@@ -24,7 +24,7 @@ public class Player {
     private ArrayList<Treasure> visibleTreasures;
     private BadConsequence pendingBadConsequence;
 
-    Player(String name) {
+    public Player(String name) {
         this.name = name;
         hiddenTreasures = new ArrayList();
         visibleTreasures = new ArrayList();
