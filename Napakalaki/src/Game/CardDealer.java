@@ -96,7 +96,7 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
-        // Nótese que perder totalidad tesoros == perder máximo (entero) de tesoros
+        // Nótese que perder totalidad tesoros == -1
         unusedMonsters.add(new Monster ("El gorrón en el umbral",10, new BadConsequence
             ("Pierdes todos tus tesoros visibles",0,-1,0), new Prize (3,1))
         );
@@ -164,8 +164,6 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
-
-
     }
 
     private void shuffleTreasures() {

@@ -103,10 +103,10 @@ public class Player {
     }
     public void applyPrize(Prize p) {
         incrementLevels(p.getLevels());
+        int numTreasures = min(p.getTreasures(),4-hiddenTreasures.size());
 
-        for (int i=0; i<min(p.getTreasures(),4-hiddenTreasures.size()); i++) {
+        for (int i=0; i < numTreasures; i++)
             hiddenTreasures.add(CardDealer.getInstance().nextTreasure());
-        }
     }
 
     public CombatResult combat(Monster m) {
