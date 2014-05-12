@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Clase que proporciona una API para el juego del Napakalaki
+ * Clase que proporciona una interfaz de usuario para el juego del Napakalaki
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */
