@@ -8,6 +8,7 @@ package TextUI;
 
 import Game.CombatResult;
 import Game.Treasure;
+import Game.TreasureKind;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author nuwanda
+ * Clase que proporciona una API para el juego del Napakalaki
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 
 public class TextUI {
@@ -178,6 +180,50 @@ public class TextUI {
         
         return msg;
     }
+
+    // Permite probar AdjustToFitTreasureLists en varios casos
+    /*
+    public void testAdjust(){
+        ArrayList<TreasureKind> to = new ArrayList(), tv = new ArrayList();
+        ArrayList<Treasure> vis = new ArrayList(), hid = new ArrayList();
+        tv.add (TreasureKind.ONEHAND);
+        tv.add (TreasureKind.ONEHAND);
+        tv.add (TreasureKind.ARMOR);
+        tv.add (TreasureKind.HELMET);
+        to.add (TreasureKind.ONEHAND);      
+        
+        Game.BadConsequence b = new Game.BadConsequence("Prueba Adjust v1",0,tv,to);
+        
+        vis.add (new Treasure ("casco",0,0,0,TreasureKind.HELMET));
+        vis.add (new Treasure("mano",0,0,0,TreasureKind.ONEHAND));
+        hid.add (new Treasure("mano",0,0,0,TreasureKind.ONEHAND));
+        
+        System.out.println(b.toString());
+        System.out.println("Ajustando a... \nVisibles:" + vis.toString() + "\nOcultos:" + hid.toString());
+        //Debe haber sólo un onehand en visibles
+        System.out.println(b.adjustToFitTreasureLists(vis,hid).toString());
+            
+        hid.add (new Treasure("casco",0,0,0,TreasureKind.HELMET));
+        hid.add (new Treasure("armadura",0,0,0,TreasureKind.ARMOR));
+            
+        System.out.println("Ajustando a... \nVisibles:" + vis.toString() + "\nOcultos:" + hid.toString());
+        // El mal rollo quita menos tesoros visibles de los que tiene el jugador
+        System.out.println(b.adjustToFitTreasureLists(vis,hid).toString());
+            
+        hid = new ArrayList();
+        System.out.println("Ajustando a... \nVisibles:" + vis.toString() + "\nOcultos:" + hid.toString());
+        // El mal rollo no debe quitar tesoros visibles
+        System.out.println(b.adjustToFitTreasureLists(vis,hid).toString());
+            
+        vis.clear();
+        vis.add (new Treasure("dos manos",0,0,0,TreasureKind.BOTHHANDS));
+        hid.clear();
+        hid.add (new Treasure("dos manos",0,0,0,TreasureKind.BOTHHANDS));
+        System.out.println("Ajustando a... \nVisibles:" + vis.toString() + "\nOcultos:" + hid.toString());
+        // El mal rollo debe quedar vacío
+        System.out.println(b.adjustToFitTreasureLists(vis,hid).toString());
+    }
+    */
     
     // Método de juego: Muestra menús e interactúa con el jugador
     public void play() {
@@ -197,7 +243,7 @@ public class TextUI {
                 players.add(p);
         }
 
-        if (players.isEmpty() || players.size() > 3)
+        if (players.isEmpty())
             throw new IllegalStateException("El número de jugadores debe estar entre 1 y 3.");
 
         game.initGame(players);

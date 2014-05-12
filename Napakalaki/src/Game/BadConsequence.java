@@ -23,7 +23,7 @@ public class BadConsequence {
     private ArrayList<TreasureKind> specificHiddenTreasures;
     private ArrayList<TreasureKind> specificVisibleTreasures;
 
-    BadConsequence(String text, int levels, int nVisible, int nHidden) {
+    public BadConsequence(String text, int levels, int nVisible, int nHidden) {
         this.text = text;
         this.levels = levels;
         nVisibleTreasures = nVisible;
@@ -32,7 +32,7 @@ public class BadConsequence {
         specificVisibleTreasures = new ArrayList();
         death = false;
     }
-    BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
+    public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible,
             ArrayList<TreasureKind> tHidden) {
         this.text = text;
         this.levels = levels;
@@ -41,7 +41,7 @@ public class BadConsequence {
         death = false;
     }
 
-    BadConsequence(String text, boolean death) {
+    public BadConsequence(String text, boolean death) {
         this.text = text;
         this.death = death;
         levels = nVisibleTreasures = nHiddenTreasures = 0;

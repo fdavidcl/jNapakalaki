@@ -18,7 +18,7 @@ public class Treasure {
     private int maxBonus;
     private TreasureKind type;
 
-    Treasure(String n, int g, int min, int max, TreasureKind t) {
+    public Treasure(String n, int g, int min, int max, TreasureKind t) {
         name = n;
         goldCoins = g;
         minBonus = min;

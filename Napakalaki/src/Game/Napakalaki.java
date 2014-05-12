@@ -95,7 +95,6 @@ public class Napakalaki {
 
     @SuppressWarnings("empty-statement")
     public boolean nextTurn() {
-        // Consultar: la función debe devolver stateOK??
         boolean stateOK = nextTurnAllowed();
 
         if (stateOK) {
