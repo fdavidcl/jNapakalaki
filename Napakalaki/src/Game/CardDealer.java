@@ -19,6 +19,7 @@ public class CardDealer {
     private ArrayList<Monster> unusedMonsters;
     private ArrayList<Treasure> usedTreasures;
     private ArrayList<Treasure> unusedTreasures;
+    private ArrayList<Cultist> unusedCultists;
     private static final CardDealer instance = new CardDealer();
 
     private CardDealer() {
@@ -26,6 +27,7 @@ public class CardDealer {
         unusedMonsters = new ArrayList();
         usedTreasures = new ArrayList();
         unusedTreasures = new ArrayList();
+        unusedCultists = new ArrayList();
     }
 
     private void initTreasureCardDeck() {
@@ -164,6 +166,10 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
+    }
+    
+    private void initCultistCardDeck() {
+        
     }
 
     private void shuffleTreasures() {

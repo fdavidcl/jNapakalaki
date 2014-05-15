@@ -10,6 +10,19 @@ package Game;
  *
  * @author fdavidcl
  */
-public class Cultist {
+public class Cultist implements Card {
+    private String name;
+    private int gainedLevels;
+    
+    Cultist(String name, int gainedLevels) {
+        this.name = name;
+        this.gainedLevels = gainedLevels;
+    }
+    public int getBasicValue() {
+        return gainedLevels;
+    }
+    public int getSpecialValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

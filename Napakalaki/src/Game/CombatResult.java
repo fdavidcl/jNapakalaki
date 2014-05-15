@@ -16,5 +16,6 @@ public enum CombatResult {
     WIN,
     LOSE,
     LOSEANDESCAPE,
-    LOSEANDDIE
+    LOSEANDDIE,
+    LOSEANDCONVERT
 }

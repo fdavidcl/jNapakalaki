@@ -11,9 +11,20 @@ package Game;
  * @author fdavidcl
  */
 public class CultistPlayer extends Player {
-
+    private static int totalCultistPlayers = 0;
+    private Cultist myCultistCard;
+    
     public CultistPlayer(String name, Cultist c) {
         super(name);
+        totalCultistPlayers++;
+    }
+
+    public static int getTotalCultistPlayers() {
+        return totalCultistPlayers;
     }
     
+    @Override
+    public int getCombatLevel() {
+        return super.getCombatLevel() + myCultistCard.getSpecialValue();
+    }
 }
