@@ -172,6 +172,12 @@ public class CardDealer {
     
     private void initCultistCardDeck() {
         // Añadir cartas sectarias
+        unusedCultists.add(new Cultist("Sectario", 1));
+        unusedCultists.add(new Cultist("Sectario", 2));
+        unusedCultists.add(new Cultist("Sectario", 1));
+        unusedCultists.add(new Cultist("Sectario", 2));
+        unusedCultists.add(new Cultist("Sectario", 1));
+        unusedCultists.add(new Cultist("Sectario", 1));
     }
 
     private void shuffleTreasures() {
