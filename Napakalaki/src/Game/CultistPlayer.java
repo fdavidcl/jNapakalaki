@@ -5,7 +5,7 @@
  */
 
 package Game;
-
+import java.util.ArrayList;
 /**
  *
  * @author fdavidcl
@@ -14,8 +14,8 @@ public class CultistPlayer extends Player {
     private static int totalCultistPlayers = 0;
     private Cultist myCultistCard;
     
-    public CultistPlayer(String name, Cultist c) {
-        super(name);
+    public CultistPlayer(Player p, Cultist c) {
+        super(p);
         totalCultistPlayers++;
     }
 
@@ -29,7 +29,22 @@ public class CultistPlayer extends Player {
     }
     
     @Override
-    public boolean shouldConvert() {
+    public boolean shouldConvert(){
         return false;
+    }
+    
+    @Override
+    public int getOpponentLevel(Monster m){
+        return m.getSpecialValue();
+    }
+    
+    @Override
+    public int computeGoldCoinsValue(ArrayList<Treasure> t) {
+        int sum = 0;
+        for (Treasure v : t) {
+            // Las piezas de oro duplican su valor
+            sum += v.getGoldCoins()*2;
+        }
+        return sum/1000;
     }
 }
