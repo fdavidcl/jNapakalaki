@@ -27,4 +27,9 @@ public class CultistPlayer extends Player {
     public int getCombatLevel() {
         return super.getCombatLevel() + myCultistCard.getSpecialValue();
     }
+    
+    @Override
+    public boolean shouldConvert() {
+        return false;
+    }
 }

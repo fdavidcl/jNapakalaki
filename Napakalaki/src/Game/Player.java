@@ -249,4 +249,8 @@ public class Player {
     public ArrayList<Treasure> getVisibleTreasures() {
         return (ArrayList<Treasure>) visibleTreasures.clone();
     }
+    
+    public boolean shouldConvert() {
+        return Dice.getInstance().nextNumber() == 6;
+    }
 }
