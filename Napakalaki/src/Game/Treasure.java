@@ -11,7 +11,7 @@ package Game;
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */
-public class Treasure {
+public class Treasure implements Card {
     private String name;
     private int goldCoins;
     private int minBonus;
@@ -34,11 +34,11 @@ public class Treasure {
         return goldCoins;
     }
 
-    public int getMinBonus() {
+    public int getBasicValue() {
         return minBonus;
     }
 
-    public int getMaxBonus() {
+    public int getSpecialValue() {
         return maxBonus;
     }
 

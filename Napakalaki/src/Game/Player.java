@@ -243,10 +243,10 @@ public class Player {
 
         if (usingNecklace)
             for (Treasure t : visibleTreasures)
-                sum += t.getMaxBonus();
+                sum += t.getSpecialValue();
         else
             for (Treasure t:visibleTreasures)
-                sum += t.getMinBonus();
+                sum += t.getBasicValue();
 
         return sum;
     }
@@ -263,7 +263,7 @@ public class Player {
         return Dice.getInstance().nextNumber() == 6;
     }
     
-    public int getOponentLevel(Monster m){
+    public int getOpponentLevel(Monster m){
         return m.getBasicValue();
     }
 }

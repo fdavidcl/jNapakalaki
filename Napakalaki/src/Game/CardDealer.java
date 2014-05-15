@@ -166,10 +166,12 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
+        
+        // Añadir cartas de monstruos sectarios
     }
     
     private void initCultistCardDeck() {
-        
+        // Añadir cartas sectarias
     }
 
     private void shuffleTreasures() {
@@ -204,6 +206,12 @@ public class CardDealer {
             usedMonsters.clear();
             shuffleMonsters();
         }
+
+        return result;
+    }
+    
+    public Cultist nextCultist() {
+        Cultist result = unusedCultists.remove(0);
 
         return result;
     }

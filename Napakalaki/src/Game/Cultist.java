@@ -22,7 +22,7 @@ public class Cultist implements Card {
         return gainedLevels;
     }
     public int getSpecialValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getBasicValue()*CultistPlayer.getTotalCultistPlayers();
     }
     
 }
