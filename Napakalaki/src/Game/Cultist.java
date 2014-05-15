@@ -22,7 +22,7 @@ public class Cultist implements Card {
         return gainedLevels;
     }
     public int getSpecialValue() {
-        
+        return getBasicValue()*CultistPlayer.getTotalCultistPlayers();
     }
     
 }
