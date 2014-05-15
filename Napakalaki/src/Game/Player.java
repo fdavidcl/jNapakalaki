@@ -243,10 +243,10 @@ public class Player {
 
         if (usingNecklace)
             for (Treasure t : visibleTreasures)
-                sum += t.getMaxBonus();
+                sum += t.getSpecialValue();
         else
             for (Treasure t:visibleTreasures)
-                sum += t.getMinBonus();
+                sum += t.getBasicValue();
 
         return sum;
     }
