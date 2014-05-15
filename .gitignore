@@ -4,5 +4,5 @@
 *.jar
 *.war
 *.ear
-/Napakalaki/nbproject/private/
-/Napakalaki/build/
+/Napakalaki/nbproject/*
+/Napakalaki/build/*
