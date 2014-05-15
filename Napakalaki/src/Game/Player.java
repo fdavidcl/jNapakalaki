@@ -29,6 +29,15 @@ public class Player {
         hiddenTreasures = new ArrayList();
         visibleTreasures = new ArrayList();
     }
+    
+    public Player(Player otro){
+        dead = otro.dead;
+        name = otro.name;
+        level = otro.level;
+        hiddenTreasures = otro.getHiddenTreasures();
+        visibleTreasures = otro.getVisibleTreasures();
+        pendingBadConsequence = otro.pendingBadConsequence;
+    }
 
     private void bringToLife() {
         dead = false;
@@ -75,7 +84,7 @@ public class Player {
             die();
     }
 
-    private int computeGoldCoinsValue(ArrayList<Treasure> t) {
+    public int computeGoldCoinsValue(ArrayList<Treasure> t) {
         int sum = 0;
         for (Treasure v : t) {
             sum += v.getGoldCoins();
@@ -112,7 +121,7 @@ public class Player {
     public CombatResult combat(Monster m) {
         CombatResult result;
 
-        if (getCombatLevel() > m.getLevel()) {
+        if (getCombatLevel() > getOponentLevel(m)) {
             Prize prize = m.getPrize();
             applyPrize(prize);
             result = (level < 10 ? CombatResult.WIN : CombatResult.WINANDWINGAME);
@@ -248,5 +257,13 @@ public class Player {
 
     public ArrayList<Treasure> getVisibleTreasures() {
         return (ArrayList<Treasure>) visibleTreasures.clone();
+    }
+    
+    public boolean shouldConvert(){
+        return Dice.getInstance().nextNumber() == 6;
+    }
+    
+    public int getOponentLevel(Monster m){
+        return m.getBasicValue();
     }
 }
