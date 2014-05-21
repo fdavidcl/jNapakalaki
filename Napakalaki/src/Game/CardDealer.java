@@ -166,8 +166,20 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
-        
-        // Añadir cartas de monstruos sectarios
+        tv.add(TreasureKind.ONEHAND);
+        unusedMonsters.add(new Monster ("El mal indecible impronunciable",10, new BadConsequence
+            ("Pierdes 1 mano visible",0, tv, to), new Prize (3,1),-2)
+        );
+        tv.clear();
+        unusedMonsters.add(new Monster ("Testigos Oculares", 6, new BadConsequence
+            ("Pierdes tus tesoros visibles. Jajaja",0,-1,0), new Prize (2,1),2)
+        );
+        unusedMonsters.add(new Monster ("El gran cthulhu", 20, new BadConsequence
+            ("Hoy no es tu día de suerte. Mueres",true), new Prize (2,5),4)
+        );
+        unusedMonsters.add(new Monster ("Serpiente Político", 8, new BadConsequence
+            ("Tu gobierno te recorta 2 niveles",2,0,0), new Prize (2,1),-2)
+        );
     }
     
     private void initCultistCardDeck() {

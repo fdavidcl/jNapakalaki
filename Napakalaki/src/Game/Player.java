@@ -121,7 +121,7 @@ public class Player {
     public CombatResult combat(Monster m) {
         CombatResult result;
 
-        if (getCombatLevel() > getOponentLevel(m)) {
+        if (getCombatLevel() > getOpponentLevel(m)) {
             Prize prize = m.getPrize();
             applyPrize(prize);
             result = (level < 10 ? CombatResult.WIN : CombatResult.WINANDWINGAME);
