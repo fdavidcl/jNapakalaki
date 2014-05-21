@@ -7,8 +7,8 @@
 package Game;
 import java.util.ArrayList;
 /**
- *
- * @author fdavidcl
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class CultistPlayer extends Player {
     private static int totalCultistPlayers = 0;
@@ -16,6 +16,7 @@ public class CultistPlayer extends Player {
     
     public CultistPlayer(Player p, Cultist c) {
         super(p);
+        myCultistCard = c;
         totalCultistPlayers++;
     }
 

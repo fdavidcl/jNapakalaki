@@ -199,6 +199,10 @@ public class CardDealer {
     private void shuffleMonsters() {
         Collections.shuffle(unusedMonsters);
     }
+    
+    private void shuffleCultists() {
+        Collections.shuffle(unusedCultists);
+    }
 
     public static CardDealer getInstance() {
         return instance;
@@ -247,5 +251,7 @@ public class CardDealer {
         shuffleMonsters();
         initTreasureCardDeck();
         shuffleTreasures();
+        initCultistCardDeck();
+        shuffleCultists();
     }
 }

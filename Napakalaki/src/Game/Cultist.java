@@ -7,8 +7,8 @@
 package Game;
 
 /**
- *
- * @author fdavidcl
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public class Cultist implements Card {
     private String name;
@@ -18,9 +18,11 @@ public class Cultist implements Card {
         this.name = name;
         this.gainedLevels = gainedLevels;
     }
+    @Override
     public int getBasicValue() {
         return gainedLevels;
     }
+    @Override
     public int getSpecialValue() {
         return getBasicValue()*CultistPlayer.getTotalCultistPlayers();
     }

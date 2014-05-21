@@ -11,7 +11,7 @@ package Game;
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */
-public class Monster {
+public class Monster implements Card{
     private String name;
     private int level;
     private Prize prize;
@@ -74,9 +74,12 @@ public class Monster {
                 + badConsequence.toString() + "\n";
     }
     
+    @Override
     public int getBasicValue(){
         return getLevel();
     }
+    
+    @Override
     public int getSpecialValue(){
         return getLevel() + levelChangeAgainstCultistPlayer;
     }
