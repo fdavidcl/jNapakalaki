@@ -33,11 +33,11 @@ public class Treasure implements Card {
     public int getGoldCoins() {
         return goldCoins;
     }
-
+    @Override
     public int getBasicValue() {
         return minBonus;
     }
-
+    @Override
     public int getSpecialValue() {
         return maxBonus;
     }
