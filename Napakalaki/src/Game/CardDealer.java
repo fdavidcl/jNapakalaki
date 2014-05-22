@@ -197,7 +197,7 @@ public class CardDealer {
         to.add(TreasureKind.BOTHHANDS);
         unusedMonsters.add(new Monster ("Felpuggoth",2, new BadConsequence
             ("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.",
-                0, tv, to), new Prize (1,1), +5)
+                0, tv, to), new Prize (1,1), 5)
         );
 
         unusedMonsters.add(new Monster("Shoggoth", 16, new BadConsequence(
