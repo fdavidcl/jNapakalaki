@@ -11,18 +11,26 @@ package Game;
  * @author Francisco David Charte Luque
  * @author Ignacio Cordón Castillo
  */
-public class Monster {
+public class Monster implements Card{
     private String name;
     private int level;
     private Prize prize;
     private BadConsequence badConsequence;
+    private int levelChangeAgainstCultistPlayer;
 
     public Monster(String name, int level, BadConsequence badConsequence, Prize prize) {
+        this.levelChangeAgainstCultistPlayer = 0;
         this.name = name;
         this.level = level;
         this.badConsequence = badConsequence;
         this.prize = prize;
     }
+
+    public Monster(String name, int level, BadConsequence badConsequence, Prize prize, int levelChangeAgainstCultistPlayer){
+        this(name,level,badConsequence,prize);
+        this.levelChangeAgainstCultistPlayer = levelChangeAgainstCultistPlayer;
+    }
+    
 
     /**
      * Consultor de nombre
@@ -64,5 +72,15 @@ public class Monster {
         return "Nombre: " + name + ", Nivel: " + Integer.toString(level)
                 + "\n\tBuen rollo: " + prize.toString() + "\n\tMal rollo: "
                 + badConsequence.toString() + "\n";
+    }
+    
+    @Override
+    public int getBasicValue(){
+        return getLevel();
+    }
+    
+    @Override
+    public int getSpecialValue(){
+        return getLevel() + levelChangeAgainstCultistPlayer;
     }
 }

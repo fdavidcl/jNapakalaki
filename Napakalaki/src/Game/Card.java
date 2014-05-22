@@ -7,8 +7,8 @@
 package Game;
 
 /**
- *
- * @author fdavidcl
+ * @author Francisco David Charte Luque
+ * @author Ignacio Cordón Castillo
  */
 public interface Card {
     public int getBasicValue();

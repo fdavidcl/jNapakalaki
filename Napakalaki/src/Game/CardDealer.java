@@ -166,10 +166,23 @@ public class CardDealer {
         );
         tv.clear();
         to.clear();
-        
-        // Añadir cartas de monstruos sectarios
-        
-        
+
+        // Sectarios
+        tv.add(TreasureKind.ONEHAND);
+        unusedMonsters.add(new Monster ("El mal indecible impronunciable",10, new BadConsequence
+            ("Pierdes 1 mano visible",0, tv, to), new Prize (3,1),-2)
+        );
+        tv.clear();
+        unusedMonsters.add(new Monster ("Testigos Oculares", 6, new BadConsequence
+            ("Pierdes tus tesoros visibles. Jajaja",0,-1,0), new Prize (2,1),2)
+        );
+        unusedMonsters.add(new Monster ("El gran cthulhu", 20, new BadConsequence
+            ("Hoy no es tu día de suerte. Mueres",true), new Prize (2,5),4)
+        );
+        unusedMonsters.add(new Monster ("Serpiente Político", 8, new BadConsequence
+            ("Tu gobierno te recorta 2 niveles",2,0,0), new Prize (2,1),-2)
+        );
+
         tv.clear();
         to.clear();
         tv.add(TreasureKind.HELMET);
@@ -186,14 +199,14 @@ public class CardDealer {
             ("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.",
                 0, tv, to), new Prize (1,1), +5)
         );
-        
+
         unusedMonsters.add(new Monster("Shoggoth", 16, new BadConsequence(
             "Pierdes 2 niveles", 2, 0, 0), new Prize(4, 2), -4));
-        
+
         unusedMonsters.add(new Monster("Lolitagooth", 2, new BadConsequence(
             "Pintalabios negro. Pierdes 2 niveles", 2, 0, 0), new Prize(1, 1), 3));
     }
-    
+
     private void initCultistCardDeck() {
         // Añadir cartas sectarias
         unusedCultists.add(new Cultist("Sectario", 1));
@@ -210,6 +223,10 @@ public class CardDealer {
 
     private void shuffleMonsters() {
         Collections.shuffle(unusedMonsters);
+    }
+
+    private void shuffleCultists() {
+        Collections.shuffle(unusedCultists);
     }
 
     public static CardDealer getInstance() {
@@ -239,7 +256,7 @@ public class CardDealer {
 
         return result;
     }
-    
+
     public Cultist nextCultist() {
         Cultist result = unusedCultists.remove(0);
 
@@ -259,5 +276,7 @@ public class CardDealer {
         shuffleMonsters();
         initTreasureCardDeck();
         shuffleTreasures();
+        initCultistCardDeck();
+        shuffleCultists();
     }
 }
