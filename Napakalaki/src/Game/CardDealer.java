@@ -168,6 +168,30 @@ public class CardDealer {
         to.clear();
         
         // Añadir cartas de monstruos sectarios
+        
+        
+        tv.clear();
+        to.clear();
+        tv.add(TreasureKind.HELMET);
+        tv.add(TreasureKind.ARMOR);
+        to.add(TreasureKind.ONEHAND);
+        to.add(TreasureKind.ONEHAND);
+        to.add(TreasureKind.ONEHAND);
+        to.add(TreasureKind.ONEHAND);
+        to.add(TreasureKind.BOTHHANDS);
+        to.add(TreasureKind.BOTHHANDS);
+        to.add(TreasureKind.BOTHHANDS);
+        to.add(TreasureKind.BOTHHANDS);
+        unusedMonsters.add(new Monster ("Felpuggoth",2, new BadConsequence
+            ("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.",
+                0, tv, to), new Prize (1,1), +5)
+        );
+        
+        unusedMonsters.add(new Monster("Shoggoth", 16, new BadConsequence(
+            "Pierdes 2 niveles", 2, 0, 0), new Prize(4, 2), -4));
+        
+        unusedMonsters.add(new Monster("Lolitagooth", 2, new BadConsequence(
+            "Pintalabios negro. Pierdes 2 niveles", 2, 0, 0), new Prize(1, 1), 3));
     }
     
     private void initCultistCardDeck() {
