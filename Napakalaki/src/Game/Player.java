@@ -134,7 +134,7 @@ public class Player {
             }
             else{
                 applyBadConsequence(bad);
-                result = (shouldConvert() ? CombatResult.LOSEANDCONVERT : CombatResult.LOSE);
+                result = shouldConvert() ? CombatResult.LOSEANDCONVERT : CombatResult.LOSE;
             }
         }
         else{

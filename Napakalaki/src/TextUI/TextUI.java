@@ -100,7 +100,7 @@ public class TextUI {
 
         if (fight) {
             System.out.println("Luchando contra " + game.getCurrentMonster().getName() +
-                " (nivel " + game.getCurrentMonster().getLevel() + ")" +
+                " (nivel " + game.getCurrentPlayer().getOpponentLevel(game.getCurrentMonster()) + ")" +
                 "\nSi vences obtendrás: " + game.getCurrentMonster().getPrize().toString() +
                 "\nSi pierdes: " + game.getCurrentMonster().getBadConsequence());
         }
@@ -175,6 +175,9 @@ public class TextUI {
                 break;
             case LOSEANDDIE:
                 msg = "Has perdido tu combate, y el monstruo te ha matado";
+                break;
+            case LOSEANDCONVERT:
+                msg = "Has perdido tu combate, y te has convertido en sectario";
                 break;
         }
         
