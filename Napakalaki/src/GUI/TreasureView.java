@@ -28,19 +28,64 @@ public class TreasureView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        typeLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        goldLabel = new javax.swing.JLabel();
+        minBonusLabel = new javax.swing.JLabel();
+        maxBonusLabel = new javax.swing.JLabel();
+
+        typeLabel.setFont(typeLabel.getFont());
+        typeLabel.setText("TIPO");
+
+        nameLabel.setFont(nameLabel.getFont());
+        nameLabel.setText("jLabel1");
+
+        goldLabel.setFont(goldLabel.getFont().deriveFont(goldLabel.getFont().getStyle() | java.awt.Font.BOLD));
+        goldLabel.setText("oro");
+
+        minBonusLabel.setFont(minBonusLabel.getFont());
+        minBonusLabel.setText("min");
+
+        maxBonusLabel.setFont(maxBonusLabel.getFont());
+        maxBonusLabel.setText("max");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(typeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(goldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(minBonusLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(maxBonusLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeLabel)
+                    .addComponent(nameLabel)
+                    .addComponent(goldLabel)
+                    .addComponent(minBonusLabel)
+                    .addComponent(maxBonusLabel))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel goldLabel;
+    private javax.swing.JLabel maxBonusLabel;
+    private javax.swing.JLabel minBonusLabel;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel typeLabel;
     // End of variables declaration//GEN-END:variables
 }
