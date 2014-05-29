@@ -132,9 +132,9 @@ public class Player {
                 die();
                 result = CombatResult.LOSEANDDIE;
             }
-            else{
+            else {
                 applyBadConsequence(bad);
-                result = shouldConvert() ? CombatResult.LOSEANDCONVERT : CombatResult.LOSE;
+                result = (shouldConvert() ? CombatResult.LOSEANDCONVERT : CombatResult.LOSE);
             }
         }
         else{
