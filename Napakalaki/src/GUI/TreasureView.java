@@ -6,17 +6,24 @@
 
 package GUI;
 
+import Game.Treasure;
+
 /**
  *
  * @author fdavidcl
  */
 public class TreasureView extends javax.swing.JPanel {
-
+    private Treasure treasureModel;
     /**
      * Creates new form TreasureView
      */
     public TreasureView() {
         initComponents();
+    }
+    
+    public void setTreasure(Treasure t) {
+        treasureModel = t;
+        goldLabel.setText(Integer.toString(treasureModel));
     }
 
     /**
@@ -34,7 +41,7 @@ public class TreasureView extends javax.swing.JPanel {
         minBonusLabel = new javax.swing.JLabel();
         maxBonusLabel = new javax.swing.JLabel();
 
-        typeLabel.setFont(typeLabel.getFont());
+        typeLabel.setFont(typeLabel.getFont().deriveFont(typeLabel.getFont().getStyle() | java.awt.Font.BOLD));
         typeLabel.setText("TIPO");
 
         nameLabel.setFont(nameLabel.getFont());
