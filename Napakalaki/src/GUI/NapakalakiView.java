@@ -7,6 +7,7 @@
 package GUI;
 
 import Game.Napakalaki;
+import java.util.ArrayList;
 
 /**
  *
@@ -62,6 +63,10 @@ public class NapakalakiView extends javax.swing.JFrame {
         NapakalakiView napakalakiView = new NapakalakiView();
         
         napakalakiView.setNapakalaki(napakalakiModel);
+        ArrayList<String> names;
+        PlayerNamesCapture namesCapture = new PlayerNamesCapture(napakalakiView, true);
+        names = namesCapture.getNames();
+        napakalakiModel.initGame(names);
         napakalakiView.showView();
     }
 
