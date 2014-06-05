@@ -80,7 +80,7 @@
             <Font component="treasureText" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="treasures"/>
+        <Property name="text" type="java.lang.String" value="tesoros"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="levelText">
@@ -90,7 +90,7 @@
             <Font component="levelText" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="levels"/>
+        <Property name="text" type="java.lang.String" value="niveles"/>
       </Properties>
     </Component>
   </SubComponents>

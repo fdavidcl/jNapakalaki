@@ -33,14 +33,14 @@ public class BadConsequenceView extends javax.swing.JPanel {
             visibleLabel.setVisible(false);
         } else {
             deathLabel.setVisible(false);
-            levelsLabel.setText("-" + Integer.toString(badModel.getLevels()) + " levels");
+            levelsLabel.setText("-" + Integer.toString(badModel.getLevels()) + " niveles");
             
             if (badModel.getSpecificVisibleTreasures().isEmpty() && badModel.getSpecificHiddenTreasures().isEmpty()) {
-                hiddenLabel.setText("-" + Integer.toString(badModel.getHiddenTreasures()) + " hidden");
-                visibleLabel.setText("-" + Integer.toString(badModel.getVisibleTreasures()) + " visible");
+                hiddenLabel.setText("-" + Integer.toString(badModel.getHiddenTreasures()) + " ocultos");
+                visibleLabel.setText("-" + Integer.toString(badModel.getVisibleTreasures()) + " visibles");
             } else {
-                hiddenLabel.setText("Hidden: " + badModel.getSpecificHiddenTreasures());
-                visibleLabel.setText("Visible: " + badModel.getSpecificVisibleTreasures());
+                hiddenLabel.setText("Ocultos: " + badModel.getSpecificHiddenTreasures());
+                visibleLabel.setText("Visibles: " + badModel.getSpecificVisibleTreasures());
             }
         }
         this.repaint();
@@ -63,7 +63,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
         deathLabel = new javax.swing.JLabel();
 
         badText.setFont(badText.getFont());
-        badText.setText("Bad consequence:");
+        badText.setText("Mal rollo:");
 
         badContent.setFont(badContent.getFont().deriveFont(badContent.getFont().getSize()-2f));
         badContent.setText("You lose...");
@@ -78,7 +78,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
         levelsLabel.setText("Levels lost");
 
         deathLabel.setFont(deathLabel.getFont());
-        deathLabel.setText("Death");
+        deathLabel.setText("Muerte");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,7 +95,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
                             .addComponent(hiddenLabel)
                             .addComponent(levelsLabel)
                             .addComponent(deathLabel))
-                        .addGap(0, 71, Short.MAX_VALUE)))
+                        .addGap(0, 117, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

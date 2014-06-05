@@ -79,7 +79,7 @@
             <Font bold="true" component="nameLabel" property="font" relativeSize="true" size="7"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="Monster Name"/>
+        <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="levelLabel">
