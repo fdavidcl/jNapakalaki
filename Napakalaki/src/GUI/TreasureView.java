@@ -24,11 +24,11 @@ public class TreasureView extends javax.swing.JPanel {
     
     public void setTreasure(Treasure t) {
         treasureModel = t;
-        goldLabel.setText(Integer.toString(treasureModel.getGoldCoins()));
+        goldLabel.setText(Integer.toString(treasureModel.getGoldCoins()) + " oro");
         typeLabel.setText(treasureModel.getType().toString().toUpperCase());
         nameLabel.setText(treasureModel.getName());
-        minBonusLabel.setText(Integer.toString(treasureModel.getBasicValue()));
-        maxBonusLabel.setText(Integer.toString(treasureModel.getSpecialValue()));
+        minBonusLabel.setText("+" + Integer.toString(treasureModel.getBasicValue()));
+        maxBonusLabel.setText("+" + Integer.toString(treasureModel.getSpecialValue()));
         setOpaque(false);
         
         repaint();
@@ -57,7 +57,7 @@ public class TreasureView extends javax.swing.JPanel {
         minBonusLabel = new javax.swing.JLabel();
         maxBonusLabel = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 153, 255));
+        setBackground(new java.awt.Color(190, 208, 232));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -98,15 +98,15 @@ public class TreasureView extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeLabel)
                     .addComponent(nameLabel)
                     .addComponent(goldLabel)
                     .addComponent(minBonusLabel)
                     .addComponent(maxBonusLabel))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
