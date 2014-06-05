@@ -6,12 +6,15 @@
 
 package GUI;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author fdavidcl
  */
 public class PlayerView extends javax.swing.JPanel {
-
+    private Game.Player playerModel;
+    
     /**
      * Creates new form PlayerView
      */
@@ -28,19 +31,133 @@ public class PlayerView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        playerLabel = new javax.swing.JLabel();
+        levelLabel = new javax.swing.JLabel();
+        visibleTreasures = new javax.swing.JPanel();
+        hiddenTreasures = new javax.swing.JPanel();
+        buyButton = new javax.swing.JButton();
+        makeVisButton = new javax.swing.JButton();
+        discardButton = new javax.swing.JButton();
+        cultistView1 = new GUI.CultistView();
+
+        playerLabel.setFont(playerLabel.getFont().deriveFont(playerLabel.getFont().getSize()+7f));
+        playerLabel.setText("Name");
+
+        levelLabel.setFont(levelLabel.getFont().deriveFont(levelLabel.getFont().getSize()+27f));
+        levelLabel.setText("+5");
+
+        buyButton.setFont(buyButton.getFont());
+        buyButton.setText("Buy Levels");
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
+
+        makeVisButton.setFont(makeVisButton.getFont());
+        makeVisButton.setText("Make visible");
+        makeVisButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeVisButtonActionPerformed(evt);
+            }
+        });
+
+        discardButton.setFont(discardButton.getFont());
+        discardButton.setText("Discard Treasures");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playerLabel)
+                            .addComponent(levelLabel))
+                        .addGap(37, 37, 37)
+                        .addComponent(cultistView1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(makeVisButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(discardButton))
+                        .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(hiddenTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(visibleTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(buyButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(makeVisButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(discardButton))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(playerLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(levelLabel)))
+                    .addComponent(cultistView1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buyButtonActionPerformed
 
+    private void makeVisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeVisButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_makeVisButtonActionPerformed
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buyButton;
+    private GUI.CultistView cultistView1;
+    private javax.swing.JButton discardButton;
+    private javax.swing.JPanel hiddenTreasures;
+    private javax.swing.JLabel levelLabel;
+    private javax.swing.JButton makeVisButton;
+    private javax.swing.JLabel playerLabel;
+    private javax.swing.JPanel visibleTreasures;
     // End of variables declaration//GEN-END:variables
+
+    public void setPlayer(Game.Player p){
+        playerModel = p;
+        playerLabel.setText(playerModel.getName());
+        levelLabel.setText(Integer.toString(playerModel.getCombatLevel()));
+        
+        fillTreasurePanel(visibleTreasures, playerModel.getVisibleTreasures());
+        fillTreasurePanel(hiddenTreasures, playerModel.getHiddenTreasures());
+        
+        repaint();
+        revalidate();
+    }
+    
+    public void fillTreasurePanel(javax.swing.JPanel p, ArrayList<Game.Treasure> treasures){
+        p.removeAll();
+        
+        for (Game.Treasure t : treasures){
+            TreasureView tview = new TreasureView();
+            tview.setTreasure(t);
+            tview.setVisible(true);
+            p.add(tview);
+        }
+        
+        p.repaint();
+        p.revalidate();
+    }
+
 }
