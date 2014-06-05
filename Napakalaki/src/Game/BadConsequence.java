@@ -81,6 +81,14 @@ public class BadConsequence {
     public int getHiddenTreasures() {
         return nHiddenTreasures;
     }
+    
+    /**
+     * Consultor de texto
+     * @return Contenido del mal rollo
+     */
+    public String getText() {
+        return text;
+    }
 
     /**
      * Consultor de tesoros visibles específicos

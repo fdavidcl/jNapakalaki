@@ -55,7 +55,7 @@
             <Font bold="true" component="typeLabel" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="TIPO"/>
+        <Property name="text" type="java.lang.String" value="TYPE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="nameLabel">
@@ -65,7 +65,7 @@
             <Font component="nameLabel" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="goldLabel">
@@ -75,7 +75,7 @@
             <Font bold="true" component="goldLabel" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="oro"/>
+        <Property name="text" type="java.lang.String" value="gold"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="minBonusLabel">

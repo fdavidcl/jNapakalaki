@@ -43,13 +43,15 @@ public class CultistView extends javax.swing.JPanel {
         specialLabel = new javax.swing.JLabel();
         totalLabel = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         nameLabel.setFont(nameLabel.getFont().deriveFont(nameLabel.getFont().getStyle() | java.awt.Font.BOLD, nameLabel.getFont().getSize()+7));
-        nameLabel.setText("Sectario");
+        nameLabel.setText("Cultist");
 
         basicLabel.setFont(basicLabel.getFont().deriveFont(basicLabel.getFont().getSize()+27f));
         basicLabel.setText("+2");
 
-        explainLabel.setText("por cada sectario en juego");
+        explainLabel.setText("for each cultist in game");
 
         specialLabel.setText("+4");
 
@@ -69,7 +71,7 @@ public class CultistView extends javax.swing.JPanel {
                         .addComponent(totalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(specialLabel)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +86,7 @@ public class CultistView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(specialLabel)
                     .addComponent(totalLabel))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -6,17 +6,43 @@
 
 package GUI;
 
+import Game.BadConsequence;
+
 /**
  *
  * @author fdavidcl
  */
 public class BadConsequenceView extends javax.swing.JPanel {
-
+    private BadConsequence badModel;
     /**
      * Creates new form BadConsequenceView
      */
     public BadConsequenceView() {
         initComponents();
+    }
+    
+    public void setBad(BadConsequence b) {
+        badModel = b;
+        
+        badContent.setText(badModel.getText());
+        
+        if (badModel.kills()) {
+            deathLabel.setVisible(true);
+            levelsLabel.setVisible(false);
+            hiddenLabel.setVisible(false);
+            visibleLabel.setVisible(false);
+        } else {
+            deathLabel.setVisible(false);
+            levelsLabel.setText("-" + Integer.toString(badModel.getLevels()) + " levels");
+            
+            if (badModel.getSpecificVisibleTreasures().isEmpty() && badModel.getSpecificHiddenTreasures().isEmpty()) {
+                hiddenLabel.setText("-" + Integer.toString(badModel.getHiddenTreasures()) + " hidden");
+                visibleLabel.setText("-" + Integer.toString(badModel.getVisibleTreasures()) + " visible");
+            } else {
+                hiddenLabel.setText("Hidden: " + badModel.getSpecificHiddenTreasures());
+                visibleLabel.setText("Visible: " + badModel.getSpecificVisibleTreasures());
+            }
+        }
     }
 
     /**
@@ -28,19 +54,75 @@ public class BadConsequenceView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        badText = new javax.swing.JLabel();
+        badContent = new javax.swing.JLabel();
+        visibleLabel = new javax.swing.JLabel();
+        hiddenLabel = new javax.swing.JLabel();
+        levelsLabel = new javax.swing.JLabel();
+        deathLabel = new javax.swing.JLabel();
+
+        badText.setFont(badText.getFont());
+        badText.setText("Bad consequence:");
+
+        badContent.setFont(badContent.getFont().deriveFont(badContent.getFont().getSize()-2f));
+        badContent.setText("You lose...");
+
+        visibleLabel.setFont(visibleLabel.getFont().deriveFont(visibleLabel.getFont().getSize()-2f));
+        visibleLabel.setText("Visible lost");
+
+        hiddenLabel.setFont(hiddenLabel.getFont().deriveFont(hiddenLabel.getFont().getSize()-2f));
+        hiddenLabel.setText("Hidden lost");
+
+        levelsLabel.setFont(levelsLabel.getFont().deriveFont(levelsLabel.getFont().getSize()-2f));
+        levelsLabel.setText("Levels lost");
+
+        deathLabel.setFont(deathLabel.getFont());
+        deathLabel.setText("Death");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(badContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(badText)
+                            .addComponent(visibleLabel)
+                            .addComponent(hiddenLabel)
+                            .addComponent(levelsLabel)
+                            .addComponent(deathLabel))
+                        .addGap(0, 71, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(badText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(badContent, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(visibleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hiddenLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(levelsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deathLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel badContent;
+    private javax.swing.JLabel badText;
+    private javax.swing.JLabel deathLabel;
+    private javax.swing.JLabel hiddenLabel;
+    private javax.swing.JLabel levelsLabel;
+    private javax.swing.JLabel visibleLabel;
     // End of variables declaration//GEN-END:variables
 }

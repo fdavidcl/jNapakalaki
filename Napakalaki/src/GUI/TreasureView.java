@@ -48,13 +48,13 @@ public class TreasureView extends javax.swing.JPanel {
         maxBonusLabel = new javax.swing.JLabel();
 
         typeLabel.setFont(typeLabel.getFont().deriveFont(typeLabel.getFont().getStyle() | java.awt.Font.BOLD));
-        typeLabel.setText("TIPO");
+        typeLabel.setText("TYPE");
 
         nameLabel.setFont(nameLabel.getFont());
-        nameLabel.setText("jLabel1");
+        nameLabel.setText("Name");
 
         goldLabel.setFont(goldLabel.getFont().deriveFont(goldLabel.getFont().getStyle() | java.awt.Font.BOLD));
-        goldLabel.setText("oro");
+        goldLabel.setText("gold");
 
         minBonusLabel.setFont(minBonusLabel.getFont());
         minBonusLabel.setText("min");
