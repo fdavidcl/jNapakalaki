@@ -56,6 +56,7 @@ public class TreasureView extends javax.swing.JPanel {
         minBonusLabel = new javax.swing.JLabel();
         maxBonusLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 153, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -109,10 +110,9 @@ public class TreasureView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (isSelected())
-            selected = false;
-        else
-            selected = true;        
+        selected = !selected;
+        setOpaque(selected);        
+        repaint();
     }//GEN-LAST:event_formMouseClicked
 
 
