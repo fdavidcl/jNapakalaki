@@ -60,7 +60,7 @@ public class MonsterView extends javax.swing.JPanel {
         );
 
         nameLabel.setFont(nameLabel.getFont().deriveFont(nameLabel.getFont().getStyle() | java.awt.Font.BOLD, nameLabel.getFont().getSize()+7));
-        nameLabel.setText("Monster Name");
+        nameLabel.setText("Nombre");
 
         levelLabel.setFont(levelLabel.getFont().deriveFont(levelLabel.getFont().getStyle() | java.awt.Font.BOLD, levelLabel.getFont().getSize()+27));
         levelLabel.setText("24");

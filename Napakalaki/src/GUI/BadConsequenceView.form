@@ -28,7 +28,7 @@
                           <Component id="levelsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="deathLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="117" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -63,7 +63,7 @@
             <Font component="badText" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="Bad consequence:"/>
+        <Property name="text" type="java.lang.String" value="Mal rollo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="badContent">
@@ -113,7 +113,7 @@
             <Font component="deathLabel" property="font" relativeSize="true" size="0"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="Death"/>
+        <Property name="text" type="java.lang.String" value="Muerte"/>
       </Properties>
     </Component>
   </SubComponents>

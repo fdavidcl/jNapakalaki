@@ -50,10 +50,10 @@ public class PrizeView extends javax.swing.JPanel {
         levelNum.setText("1");
 
         treasureText.setFont(treasureText.getFont());
-        treasureText.setText("treasures");
+        treasureText.setText("tesoros");
 
         levelText.setFont(levelText.getFont());
-        levelText.setText("levels");
+        levelText.setText("niveles");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
