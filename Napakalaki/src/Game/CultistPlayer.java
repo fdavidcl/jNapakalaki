@@ -48,4 +48,8 @@ public class CultistPlayer extends Player {
         }
         return sum/1000;
     }
+    
+    public Cultist getCultist(){
+        return myCultistCard;
+    }
 }

@@ -25,7 +25,7 @@
                           <Component id="levelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="cultistView1" min="-2" pref="211" max="-2" attributes="0"/>
+                      <Component id="cultistPanel" min="-2" pref="211" max="-2" attributes="0"/>
                       <EmptySpace pref="83" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="buyButton" max="32767" attributes="0"/>
@@ -62,7 +62,7 @@
                           <Component id="levelLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="cultistView1" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                  <Component id="cultistPanel" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="visibleTreasures" min="-2" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
         <Property name="text" type="java.lang.String" value="Discard Treasures"/>
       </Properties>
     </Component>
-    <Component class="GUI.CultistView" name="cultistView1">
+    <Component class="GUI.CultistView" name="cultistPanel">
     </Component>
   </SubComponents>
 </Form>

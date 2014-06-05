@@ -8,6 +8,7 @@ package GUI;
 
 import java.util.ArrayList;
 import Game.Player;
+import Game.CultistPlayer;
 
 /**
  *
@@ -39,7 +40,7 @@ public class PlayerView extends javax.swing.JPanel {
         buyButton = new javax.swing.JButton();
         makeVisButton = new javax.swing.JButton();
         discardButton = new javax.swing.JButton();
-        cultistView1 = new GUI.CultistView();
+        cultistPanel = new GUI.CultistView();
 
         playerLabel.setFont(playerLabel.getFont().deriveFont(playerLabel.getFont().getSize()+7f));
         playerLabel.setText("Name");
@@ -78,7 +79,7 @@ public class PlayerView extends javax.swing.JPanel {
                             .addComponent(playerLabel)
                             .addComponent(levelLabel))
                         .addGap(37, 37, 37)
-                        .addComponent(cultistView1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cultistPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -106,7 +107,7 @@ public class PlayerView extends javax.swing.JPanel {
                             .addComponent(playerLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(levelLabel)))
-                    .addComponent(cultistView1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cultistPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -126,7 +127,7 @@ public class PlayerView extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyButton;
-    private GUI.CultistView cultistView1;
+    private GUI.CultistView cultistPanel;
     private javax.swing.JButton discardButton;
     private javax.swing.JPanel hiddenTreasures;
     private javax.swing.JLabel levelLabel;
@@ -143,8 +144,16 @@ public class PlayerView extends javax.swing.JPanel {
         fillTreasurePanel(visibleTreasures, playerModel.getVisibleTreasures());
         fillTreasurePanel(hiddenTreasures, playerModel.getHiddenTreasures());
         
+        cultistPanel.setVisible(false);
         repaint();
         revalidate();
+    }
+    
+    public void setCultistPlayer(CultistPlayer p){
+        setPlayer(p);
+        cultistPanel.setCultist(p.getCultist());
+        cultistPanel.setVisible(true);
+        repaint();
     }
     
     public void fillTreasurePanel(javax.swing.JPanel p, ArrayList<Game.Treasure> treasures){
