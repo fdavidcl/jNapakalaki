@@ -7,6 +7,8 @@
 package GUI;
 
 import Game.Napakalaki;
+import Game.Player;
+import Game.Monster;
 import java.util.ArrayList;
 
 /**
@@ -113,7 +115,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
-    public void setNapakalaki(Game.Player p, Game.Monster m){
+    public void setNapakalaki(Player p, Monster m){
         playerPanel.setPlayer(p);
         monsterPanel.setMonster(m);
         

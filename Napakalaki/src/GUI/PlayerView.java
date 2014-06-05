@@ -7,13 +7,14 @@
 package GUI;
 
 import java.util.ArrayList;
+import Game.Player;
 
 /**
  *
  * @author fdavidcl
  */
 public class PlayerView extends javax.swing.JPanel {
-    private Game.Player playerModel;
+    private Player playerModel;
     
     /**
      * Creates new form PlayerView
@@ -134,7 +135,7 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JPanel visibleTreasures;
     // End of variables declaration//GEN-END:variables
 
-    public void setPlayer(Game.Player p){
+    public void setPlayer(Player p){
         playerModel = p;
         playerLabel.setText(playerModel.getName());
         levelLabel.setText(Integer.toString(playerModel.getCombatLevel()));

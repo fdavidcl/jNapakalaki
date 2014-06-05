@@ -14,6 +14,7 @@ import Game.Treasure;
  */
 public class TreasureView extends javax.swing.JPanel {
     private Treasure treasureModel;
+    private boolean selected = false;
     /**
      * Creates new form TreasureView
      */
@@ -31,6 +32,14 @@ public class TreasureView extends javax.swing.JPanel {
         
         repaint();
     }
+    
+    public boolean isSelected(){
+        return selected;
+    }
+    
+    public Treasure getTreasure(){
+        return treasureModel;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +55,12 @@ public class TreasureView extends javax.swing.JPanel {
         goldLabel = new javax.swing.JLabel();
         minBonusLabel = new javax.swing.JLabel();
         maxBonusLabel = new javax.swing.JLabel();
+
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         typeLabel.setFont(typeLabel.getFont().deriveFont(typeLabel.getFont().getStyle() | java.awt.Font.BOLD));
         typeLabel.setText("TYPE");
@@ -92,6 +107,13 @@ public class TreasureView extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if (isSelected())
+            selected = false;
+        else
+            selected = true;        
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
