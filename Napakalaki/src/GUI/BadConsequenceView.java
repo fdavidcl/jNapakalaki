@@ -43,6 +43,7 @@ public class BadConsequenceView extends javax.swing.JPanel {
                 visibleLabel.setText("Visible: " + badModel.getSpecificVisibleTreasures());
             }
         }
+        this.repaint();
     }
 
     /**

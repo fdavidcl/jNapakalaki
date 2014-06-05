@@ -26,6 +26,7 @@ public class PrizeView extends javax.swing.JPanel {
         prizeModel = p;
         treasureNum.setText(Integer.toString(prizeModel.getTreasures()));
         levelNum.setText(Integer.toString(prizeModel.getLevels()));
+        this.repaint();
     }
 
     /**

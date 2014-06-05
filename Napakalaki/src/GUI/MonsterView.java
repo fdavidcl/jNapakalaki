@@ -6,19 +6,33 @@
 
 package GUI;
 
+import Game.Monster;
+
 /**
  *
  * @author fdavidcl
  */
 public class MonsterView extends javax.swing.JPanel {
-
+    private Monster monsterModel;
+    
     /**
      * Creates new form MonsterView
      */
     public MonsterView() {
         initComponents();
     }
-
+    
+    public void setMonster(Monster m) {
+        monsterModel = m;
+        
+        nameLabel.setText(monsterModel.getName());
+        levelLabel.setText(Integer.toString(monsterModel.getLevel()));
+        prizePanel.setPrize(monsterModel.getPrize());
+        badPanel.setBad(monsterModel.getBadConsequence());
+        
+        this.repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,10 +43,10 @@ public class MonsterView extends javax.swing.JPanel {
     private void initComponents() {
 
         prizeView1 = new GUI.PrizeView();
-        badConsequenceView1 = new GUI.BadConsequenceView();
-        prizeView2 = new GUI.PrizeView();
+        badPanel = new GUI.BadConsequenceView();
+        prizePanel = new GUI.PrizeView();
         nameLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        levelLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout prizeView1Layout = new javax.swing.GroupLayout(prizeView1);
         prizeView1.setLayout(prizeView1Layout);
@@ -48,50 +62,46 @@ public class MonsterView extends javax.swing.JPanel {
         nameLabel.setFont(nameLabel.getFont().deriveFont(nameLabel.getFont().getStyle() | java.awt.Font.BOLD, nameLabel.getFont().getSize()+7));
         nameLabel.setText("Monster Name");
 
-        jLabel3.setText("jLabel3");
+        levelLabel.setFont(levelLabel.getFont().deriveFont(levelLabel.getFont().getStyle() | java.awt.Font.BOLD, levelLabel.getFont().getSize()+27));
+        levelLabel.setText("24");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(badConsequenceView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prizeView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(levelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(prizePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addComponent(badPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nameLabel)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(prizeView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(badConsequenceView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(prizePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(levelLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(badPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private GUI.BadConsequenceView badConsequenceView1;
-    private javax.swing.JLabel jLabel3;
+    private GUI.BadConsequenceView badPanel;
+    private javax.swing.JLabel levelLabel;
     private javax.swing.JLabel nameLabel;
+    private GUI.PrizeView prizePanel;
     private GUI.PrizeView prizeView1;
-    private GUI.PrizeView prizeView2;
     // End of variables declaration//GEN-END:variables
 }
