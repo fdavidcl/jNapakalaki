@@ -23,7 +23,13 @@ public class TreasureView extends javax.swing.JPanel {
     
     public void setTreasure(Treasure t) {
         treasureModel = t;
-        goldLabel.setText(Integer.toString(treasureModel));
+        goldLabel.setText(Integer.toString(treasureModel.getGoldCoins()));
+        typeLabel.setText(treasureModel.getType().toString().toUpperCase());
+        nameLabel.setText(treasureModel.getName());
+        minBonusLabel.setText(Integer.toString(treasureModel.getBasicValue()));
+        maxBonusLabel.setText(Integer.toString(treasureModel.getSpecialValue()));
+        
+        repaint();
     }
 
     /**
