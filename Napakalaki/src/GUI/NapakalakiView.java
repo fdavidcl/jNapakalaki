@@ -185,11 +185,12 @@ public class NapakalakiView extends javax.swing.JFrame {
     }
     
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
+        playerPanel.lockButtons(true);
+        
         // Combatir en Napakalaki y obtener resultados
         CombatResult result = napakalakiModel.combat();
         combatText.setText(stringifyResult(result));
         playerPanel.checkDeath();
-        
         
         // Desbloquea botones para gestionar mal rollo y post-lucha
         combatButton.setEnabled(false);

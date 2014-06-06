@@ -264,6 +264,7 @@ public class PlayerView extends javax.swing.JPanel {
         buyButton.setEnabled(true);
         discardButton.setEnabled(false);
         makeVisButton.setEnabled(false);
+        dataPanel.setBackground(Color.white);
         
         cultistPanel.setVisible(false);
         redraw();
