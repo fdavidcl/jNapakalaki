@@ -56,15 +56,17 @@ public class BadConsequenceView extends javax.swing.JPanel {
     private void initComponents() {
 
         badText = new javax.swing.JLabel();
+        badContent = new javax.swing.JLabel();
         visibleLabel = new javax.swing.JLabel();
         hiddenLabel = new javax.swing.JLabel();
         levelsLabel = new javax.swing.JLabel();
         deathLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        badContent = new javax.swing.JTextArea();
 
         badText.setFont(badText.getFont());
         badText.setText("Mal rollo:");
+
+        badContent.setFont(badContent.getFont().deriveFont(badContent.getFont().getSize()-2f));
+        badContent.setText("You lose...");
 
         visibleLabel.setFont(visibleLabel.getFont().deriveFont(visibleLabel.getFont().getSize()-2f));
         visibleLabel.setText("Visible lost");
@@ -78,14 +80,6 @@ public class BadConsequenceView extends javax.swing.JPanel {
         deathLabel.setFont(deathLabel.getFont());
         deathLabel.setText("Muerte");
 
-        badContent.setColumns(20);
-        badContent.setLineWrap(true);
-        badContent.setRows(2);
-        badContent.setTabSize(1);
-        badContent.setText("Pierdes...");
-        badContent.setFocusable(false);
-        jScrollPane1.setViewportView(badContent);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,15 +87,15 @@ public class BadConsequenceView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(badContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(badText)
-                            .addComponent(levelsLabel)
-                            .addComponent(deathLabel)
                             .addComponent(visibleLabel)
-                            .addComponent(hiddenLabel))
-                        .addGap(0, 105, Short.MAX_VALUE)))
+                            .addComponent(hiddenLabel)
+                            .addComponent(levelsLabel)
+                            .addComponent(deathLabel))
+                        .addGap(0, 117, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -109,8 +103,8 @@ public class BadConsequenceView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(badText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(badContent, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(visibleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,17 +113,16 @@ public class BadConsequenceView extends javax.swing.JPanel {
                 .addComponent(levelsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deathLabel)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea badContent;
+    private javax.swing.JLabel badContent;
     private javax.swing.JLabel badText;
     private javax.swing.JLabel deathLabel;
     private javax.swing.JLabel hiddenLabel;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel levelsLabel;
     private javax.swing.JLabel visibleLabel;
     // End of variables declaration//GEN-END:variables

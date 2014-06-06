@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author nuwanda
  */
 public class PlayerNamesCapture extends javax.swing.JDialog {
-    private ArrayList<String> names = new ArrayList<String>();
+    private ArrayList<String> names;
     /**
      * Creates new form PlayerNamesCapture
      */
@@ -49,17 +49,31 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         PlayerLabel1.setFont(PlayerLabel1.getFont().deriveFont(PlayerLabel1.getFont().getStyle() | java.awt.Font.BOLD));
-        PlayerLabel1.setText("Jugador 1");
+        PlayerLabel1.setText("Player 1");
 
         PlayerLabel2.setFont(PlayerLabel2.getFont().deriveFont(PlayerLabel2.getFont().getStyle() | java.awt.Font.BOLD));
-        PlayerLabel2.setText("Jugador 2");
+        PlayerLabel2.setText("Player 2");
 
         PlayerLabel3.setFont(PlayerLabel3.getFont().deriveFont(PlayerLabel3.getFont().getStyle() | java.awt.Font.BOLD));
-        PlayerLabel3.setText("Jugador 3");
+        PlayerLabel3.setText("Player 3");
 
         PlayerTF1.setFont(PlayerTF1.getFont());
+        PlayerTF1.setText("Player 1 TextField");
+        PlayerTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlayerTF1ActionPerformed(evt);
+            }
+        });
 
         PlayerTF2.setFont(PlayerTF2.getFont());
+        PlayerTF2.setText("Player 2 TextField");
+
+        PlayerTF3.setText("Player 3 TextField");
+        PlayerTF3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlayerTF3ActionPerformed(evt);
+            }
+        });
 
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -80,31 +94,32 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(CancelButton)
+                        .addComponent(PlayerLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PlayButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(PlayerLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(PlayerTF3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(PlayerLabel2)
-                                .addComponent(PlayerLabel1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(PlayerTF1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                                .addComponent(PlayerTF2)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(PlayerTF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PlayerLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PlayerTF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PlayerLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(PlayerTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(136, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CancelButton)
+                .addGap(18, 18, 18)
+                .addComponent(PlayButton)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlayerLabel1)
                     .addComponent(PlayerTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,7 +131,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlayerLabel3)
                     .addComponent(PlayerTF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton)
                     .addComponent(PlayButton))
@@ -125,6 +140,14 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PlayerTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlayerTF1ActionPerformed
+
+    private void PlayerTF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerTF3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlayerTF3ActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         System.exit(0);
@@ -135,6 +158,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
         names.add(PlayerTF2.getText());
         names.add(PlayerTF3.getText());
         this.dispose();
+        
     }//GEN-LAST:event_PlayButtonActionPerformed
 
     public ArrayList<String> getNames(){
