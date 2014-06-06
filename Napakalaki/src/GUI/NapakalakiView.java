@@ -6,12 +6,13 @@
 
 package GUI;
 
+import Game.CombatResult;
+import Game.CultistPlayer;
 import Game.Napakalaki;
-import Game.Player;
-import Game.Monster;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -58,6 +59,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         monsterPanel = new GUI.MonsterView();
         jScrollPane1 = new javax.swing.JScrollPane();
         combatText = new javax.swing.JTextArea();
+        closeButton = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -82,9 +84,17 @@ public class NapakalakiView extends javax.swing.JFrame {
         });
 
         combatText.setColumns(20);
+        combatText.setLineWrap(true);
         combatText.setRows(5);
         combatText.setFocusable(false);
         jScrollPane1.setViewportView(combatText);
+
+        closeButton.setText("Salir");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +108,7 @@ public class NapakalakiView extends javax.swing.JFrame {
                     .addComponent(combatButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(monsterPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nTurnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -106,6 +117,7 @@ public class NapakalakiView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(playerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(monsterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,8 +125,9 @@ public class NapakalakiView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nTurnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))
-                    .addComponent(playerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(closeButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -122,12 +135,81 @@ public class NapakalakiView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nTurnButtonActionPerformed
-        // TODO add your handling code here:
+        if (napakalakiModel.nextTurn()) {
+            newTurn();
+        } else {
+            // Todavía queda el mal rollo pendiente
+            JOptionPane.showMessageDialog(null, "Aún no puedes pasar el turno. Termina de cumplir el mal rollo.");
+        }
     }//GEN-LAST:event_nTurnButtonActionPerformed
+    // Método de consulta de resultados de combate
+    private String stringifyResult(Game.CombatResult result) {
+        String msg = "";
 
+        switch(result) {
+            case WINANDWINGAME:
+                msg = "Has ganado el juego";
+                break;
+            case WIN:
+                msg = "Has ganado tu combate";
+                break;
+            case LOSE:
+                msg = "Has perdido tu combate, tienes que cumplir un mal rollo";
+                break;
+            case LOSEANDESCAPE:
+                msg = "Has perdido tu combate, pero has escapado a tiempo";
+                break;
+            case LOSEANDDIE:
+                msg = "Has perdido tu combate, y el monstruo te ha matado";
+                break;
+            case LOSEANDCONVERT:
+                msg = "Has perdido tu combate, y te has convertido en sectario";
+                break;
+        }
+        
+        return msg;
+    }
+    
+    private void newTurn() {
+        if (napakalakiModel.getCurrentPlayer() instanceof CultistPlayer)
+            playerPanel.setCultistPlayer((CultistPlayer) napakalakiModel.getCurrentPlayer());
+        else
+            playerPanel.setPlayer(napakalakiModel.getCurrentPlayer());
+        
+        monsterPanel.setMonster(napakalakiModel.getCurrentMonster());
+
+        // Restablecemos botones y textos
+        combatButton.setEnabled(true);
+        nTurnButton.setEnabled(false);
+        combatText.setText("");
+    }
+    
     private void combatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatButtonActionPerformed
-        // TODO add your handling code here:
+        // Combatir en Napakalaki y obtener resultados
+        CombatResult result = napakalakiModel.combat();
+        combatText.setText(stringifyResult(result));
+        playerPanel.checkDeath();
+        
+        
+        // Desbloquea botones para gestionar mal rollo y post-lucha
+        combatButton.setEnabled(false);
+        
+        if (result != CombatResult.WINANDWINGAME) {
+            if (result == CombatResult.WIN)
+                playerPanel.redraw();
+            else if (result == CombatResult.LOSEANDCONVERT)
+                playerPanel.setCultistPlayer((CultistPlayer) napakalakiModel.getCurrentPlayer());
+            
+            nTurnButton.setEnabled(true);
+            playerPanel.lockButtons(false);
+        }
+        
+        
     }//GEN-LAST:event_combatButtonActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_closeButtonActionPerformed
     
     public void showView() {
         this.setVisible(true);
@@ -136,8 +218,8 @@ public class NapakalakiView extends javax.swing.JFrame {
     public void setNapakalaki(Napakalaki model) {
         napakalakiModel = model;
         playerPanel.setNapakalaki(napakalakiModel);
-        playerPanel.setPlayer(napakalakiModel.getCurrentPlayer());
-        monsterPanel.setMonster(napakalakiModel.getCurrentMonster());
+        
+        newTurn();
     }    
     
     public static void main(String args[]) {
@@ -154,6 +236,7 @@ public class NapakalakiView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeButton;
     private javax.swing.JButton combatButton;
     private javax.swing.JTextArea combatText;
     private javax.swing.JButton jButton1;
