@@ -307,7 +307,6 @@ public class PlayerView extends javax.swing.JPanel {
     }
     
     public void checkDeath() {
-        System.out.println("Checkeamos death" + (playerModel.isDead() ? " true" : " false"));
         if (playerModel.isDead()) {
             lockButtons(true);
             dataPanel.setBackground(Color.red);
