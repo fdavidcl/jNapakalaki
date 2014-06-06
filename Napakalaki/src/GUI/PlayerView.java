@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import Game.Player;
 import Game.CultistPlayer;
 import Game.Napakalaki;
-import Game.Treasure;
-import java.awt.Color;
-import java.awt.Component;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,24 +39,24 @@ public class PlayerView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        hiddenTreasures = new javax.swing.JPanel();
         buyButton = new javax.swing.JButton();
         makeVisButton = new javax.swing.JButton();
         discardButton = new javax.swing.JButton();
         cultistPanel = new GUI.CultistView();
-        dataPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         playerLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         visibleText = new javax.swing.JLabel();
         hiddenText = new javax.swing.JLabel();
         hiddenNum = new javax.swing.JLabel();
         visibleNum = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         visibleTreasures = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        hiddenTreasures = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(539, 500));
+
+        hiddenTreasures.setMaximumSize(new java.awt.Dimension(538, 32767));
+        hiddenTreasures.setPreferredSize(new java.awt.Dimension(538, 32767));
 
         buyButton.setFont(buyButton.getFont());
         buyButton.setText("Comprar niveles");
@@ -82,13 +78,8 @@ public class PlayerView extends javax.swing.JPanel {
         discardButton.setFont(discardButton.getFont());
         discardButton.setText("Descartar tesoros");
         discardButton.setEnabled(false);
-        discardButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                discardButtonActionPerformed(evt);
-            }
-        });
 
-        dataPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         playerLabel.setFont(playerLabel.getFont().deriveFont(playerLabel.getFont().getStyle() | java.awt.Font.BOLD, playerLabel.getFont().getSize()+7));
         playerLabel.setText("Name");
@@ -96,30 +87,25 @@ public class PlayerView extends javax.swing.JPanel {
         levelLabel.setFont(levelLabel.getFont().deriveFont(levelLabel.getFont().getSize()+27f));
         levelLabel.setText("5");
 
-        jLabel3.setText("nivel");
-
-        javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
-        dataPanel.setLayout(dataPanelLayout);
-        dataPanelLayout.setHorizontalGroup(
-            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(playerLabel)
-                    .addComponent(levelLabel)
-                    .addComponent(jLabel3))
-                .addContainerGap(132, Short.MAX_VALUE))
+                    .addComponent(levelLabel))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
-        dataPanelLayout.setVerticalGroup(
-            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dataPanelLayout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(playerLabel)
                 .addGap(18, 18, 18)
                 .addComponent(levelLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         visibleText.setText("tesoros equipados");
@@ -131,19 +117,14 @@ public class PlayerView extends javax.swing.JPanel {
         visibleNum.setText("3");
 
         visibleTreasures.setMaximumSize(new java.awt.Dimension(538, 32767));
-        visibleTreasures.setPreferredSize(new java.awt.Dimension(538, 100));
-        jScrollPane1.setViewportView(visibleTreasures);
-
-        hiddenTreasures.setMaximumSize(new java.awt.Dimension(538, 32767));
-        hiddenTreasures.setPreferredSize(new java.awt.Dimension(538, 100));
-        jScrollPane2.setViewportView(hiddenTreasures);
+        visibleTreasures.setPreferredSize(new java.awt.Dimension(538, 32767));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(dataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cultistPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,19 +136,19 @@ public class PlayerView extends javax.swing.JPanel {
                 .addComponent(visibleNum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(visibleText))
+            .addComponent(hiddenTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(hiddenNum)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hiddenText))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cultistPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(dataPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,67 +160,34 @@ public class PlayerView extends javax.swing.JPanel {
                     .addComponent(visibleText)
                     .addComponent(visibleNum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(visibleTreasures, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hiddenText)
                     .addComponent(hiddenNum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addComponent(hiddenTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
-        /** Algo no funciona aquí, no subimos de nivel al comprarlos **/
-        if (!napakalakiModel.buyLevels(getSelectedTreasures(visibleTreasures), 
-            getSelectedTreasures(hiddenTreasures))) {
-            JOptionPane.showMessageDialog(null, "No puedes comprar tantos niveles.");
-        }
         
-        redraw();
     }//GEN-LAST:event_buyButtonActionPerformed
 
     private void makeVisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeVisButtonActionPerformed
-        ArrayList<Treasure> treasures = getSelectedTreasures(hiddenTreasures);
-        
-        for (Treasure t : treasures) {
-            napakalakiModel.makeTreasureVisible(t);
-        }
-        
-        redraw();
+        // TODO add your handling code here:
     }//GEN-LAST:event_makeVisButtonActionPerformed
-
-    private void discardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discardButtonActionPerformed
-        ArrayList<Treasure> treasures = getSelectedTreasures(visibleTreasures);
-        
-        for (Treasure t : treasures) {
-            napakalakiModel.discardVisibleTreasure(t);
-        }
-        
-        treasures = getSelectedTreasures(hiddenTreasures);
-        
-        for (Treasure t : treasures) {
-            napakalakiModel.discardHiddenTreasure(t);
-        }
-        
-        checkPendingBad();
-        checkDeath();
-        redraw();
-    }//GEN-LAST:event_discardButtonActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buyButton;
     private GUI.CultistView cultistPanel;
-    private javax.swing.JPanel dataPanel;
     private javax.swing.JButton discardButton;
     private javax.swing.JLabel hiddenNum;
     private javax.swing.JLabel hiddenText;
     private javax.swing.JPanel hiddenTreasures;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel levelLabel;
     private javax.swing.JButton makeVisButton;
     private javax.swing.JLabel playerLabel;
@@ -248,25 +196,17 @@ public class PlayerView extends javax.swing.JPanel {
     private javax.swing.JPanel visibleTreasures;
     // End of variables declaration//GEN-END:variables
 
-    public void redraw() {
+    public void setPlayer(Player p){
+        playerModel = p;
         playerLabel.setText(playerModel.getName());
-        dataPanel.setBackground(Color.white);
         levelLabel.setText(Integer.toString(playerModel.getCombatLevel()));
         
         fillTreasurePanel(visibleTreasures, visibleNum, playerModel.getVisibleTreasures());
         fillTreasurePanel(hiddenTreasures, hiddenNum, playerModel.getHiddenTreasures());
-        repaint();
-        revalidate();
-    }
-    
-    public void setPlayer(Player p){
-        playerModel = p;
-        buyButton.setEnabled(true);
-        discardButton.setEnabled(false);
-        makeVisButton.setEnabled(false);
         
         cultistPanel.setVisible(false);
-        redraw();
+        repaint();
+        revalidate();
     }
     
     public void setCultistPlayer(CultistPlayer p){
@@ -274,22 +214,6 @@ public class PlayerView extends javax.swing.JPanel {
         cultistPanel.setCultist(p.getCultist());
         cultistPanel.setVisible(true);
         repaint();
-    }
-    
-    public ArrayList<Treasure> getSelectedTreasures(javax.swing.JPanel p) {
-        // Se recorren los tesoros que contiene el panel,
-        // almacenando en un vector aquellos que están seleccionados.
-        // Finalmente se devuelve dicho vector.
-        TreasureView tv;
-        ArrayList<Treasure> output = new ArrayList();
-        
-        for (Component c : p.getComponents()) {
-            tv = (TreasureView) c;
-            if ( tv.isSelected() )
-                output.add(tv.getTreasure());
-        }
-        
-        return output;
     }
     
     public void fillTreasurePanel(javax.swing.JPanel p, javax.swing.JLabel num, ArrayList<Game.Treasure> treasures){
@@ -306,36 +230,6 @@ public class PlayerView extends javax.swing.JPanel {
         
         p.repaint();
         p.revalidate();
-    }
-    
-    public void checkDeath() {
-        System.out.println("Checkeamos death" + (playerModel.isDead() ? " true" : " false"));
-        if (playerModel.isDead()) {
-            lockButtons(true);
-            dataPanel.setBackground(Color.red);
-        }
-    }
-    
-    public void lockButtons(boolean lock) {
-        if (lock) {
-            buyButton.setEnabled(false);
-            discardButton.setEnabled(false);
-            makeVisButton.setEnabled(false);
-        } else {
-            discardButton.setEnabled(true);
-            checkPendingBad();
-        }
-    }
-
-    private void checkPendingBad() {
-        buyButton.setEnabled(false);
-        
-        if (napakalakiModel.nextTurnAllowed()) {
-            makeVisButton.setEnabled(true);
-            dataPanel.setBackground(Color.white);
-        } else {
-            dataPanel.setBackground(Color.orange);
-        }
     }
 
 }

@@ -6,7 +6,6 @@
 
 package GUI;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -131,7 +130,7 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_CancelButtonActionPerformed
-    
+
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
         javax.swing.JTextField[] fields = {PlayerTF1, PlayerTF2, PlayerTF3};
         for (javax.swing.JTextField field : fields) {
