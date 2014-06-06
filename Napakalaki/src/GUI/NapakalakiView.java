@@ -190,19 +190,20 @@ public class NapakalakiView extends javax.swing.JFrame {
         // Combatir en Napakalaki y obtener resultados
         CombatResult result = napakalakiModel.combat();
         combatText.setText(stringifyResult(result));
-        playerPanel.checkDeath();
         
         // Desbloquea botones para gestionar mal rollo y post-lucha
         combatButton.setEnabled(false);
         
         if (result != CombatResult.WINANDWINGAME) {
-            if (result == CombatResult.WIN)
-                playerPanel.redraw();
-            else if (result == CombatResult.LOSEANDCONVERT)
+            if (result == CombatResult.LOSEANDCONVERT)
                 playerPanel.setCultistPlayer((CultistPlayer) napakalakiModel.getCurrentPlayer());
             
+            
             nTurnButton.setEnabled(true);
+            // Actualizamos niveles, botones y comprobamos lo necesario
+            playerPanel.redraw();
             playerPanel.lockButtons(false);
+            playerPanel.checkDeath();
         }
         
         

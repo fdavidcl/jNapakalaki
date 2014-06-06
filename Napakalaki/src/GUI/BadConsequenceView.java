@@ -33,11 +33,18 @@ public class BadConsequenceView extends javax.swing.JPanel {
             visibleLabel.setVisible(false);
         } else {
             deathLabel.setVisible(false);
+            levelsLabel.setVisible(true);
+            hiddenLabel.setVisible(true);
+            visibleLabel.setVisible(true);
             levelsLabel.setText("-" + Integer.toString(badModel.getLevels()) + " niveles");
             
             if (badModel.getSpecificVisibleTreasures().isEmpty() && badModel.getSpecificHiddenTreasures().isEmpty()) {
-                hiddenLabel.setText(Integer.toString(badModel.getHiddenTreasures()) + " ocultos");
-                visibleLabel.setText(Integer.toString(badModel.getVisibleTreasures()) + " visibles");
+                hiddenLabel.setText((badModel.getHiddenTreasures() > -1 ? 
+                    "-" + Integer.toString(badModel.getHiddenTreasures()) :
+                    "Todos los") + " ocultos");
+                visibleLabel.setText((badModel.getVisibleTreasures() > -1 ? 
+                    "-" + Integer.toString(badModel.getVisibleTreasures()) :
+                    "Todos los") + " visibles");
             } else {
                 hiddenLabel.setText("Ocultos: " + badModel.getSpecificHiddenTreasures());
                 visibleLabel.setText("Visibles: " + badModel.getSpecificVisibleTreasures());
