@@ -7,7 +7,6 @@
 package GUI;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -132,16 +131,10 @@ public class PlayerNamesCapture extends javax.swing.JDialog {
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
-        javax.swing.JTextField[] fields = {PlayerTF1, PlayerTF2, PlayerTF3};
-        for (javax.swing.JTextField field : fields) {
-            if (field.getText().length() > 0)
-                names.add(field.getText());
-        }
-        
-        if (names.size() > 0)
-            this.dispose();
-        else
-            JOptionPane.showMessageDialog(null, "Debe haber al menos un nombre de jugador.");
+        names.add(PlayerTF1.getText());
+        names.add(PlayerTF2.getText());
+        names.add(PlayerTF3.getText());
+        this.dispose();
     }//GEN-LAST:event_PlayButtonActionPerformed
 
     public ArrayList<String> getNames(){

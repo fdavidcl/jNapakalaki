@@ -57,7 +57,7 @@ public class NapakalakiView extends javax.swing.JFrame {
         playerPanel = new GUI.PlayerView();
         monsterPanel = new GUI.MonsterView();
         jScrollPane1 = new javax.swing.JScrollPane();
-        combatText = new javax.swing.JTextArea();
+        jTextArea1 = new javax.swing.JTextArea();
 
         jButton1.setText("jButton1");
 
@@ -67,6 +67,7 @@ public class NapakalakiView extends javax.swing.JFrame {
 
         combatButton.setFont(combatButton.getFont());
         combatButton.setText("Combatir");
+        combatButton.setEnabled(false);
         combatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combatButtonActionPerformed(evt);
@@ -81,10 +82,10 @@ public class NapakalakiView extends javax.swing.JFrame {
             }
         });
 
-        combatText.setColumns(20);
-        combatText.setRows(5);
-        combatText.setFocusable(false);
-        jScrollPane1.setViewportView(combatText);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,9 +156,9 @@ public class NapakalakiView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton combatButton;
-    private javax.swing.JTextArea combatText;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private GUI.MonsterView monsterPanel;
     private javax.swing.JButton nTurnButton;
     private GUI.PlayerView playerPanel;
