@@ -27,8 +27,9 @@ public class MonsterView extends javax.swing.JPanel {
         
         nameLabel.setText(monsterModel.getName());
         levelLabel.setText(Integer.toString(monsterModel.getLevel()));
-        bonusSectarios.setText(Integer.toString(monsterModel.getSpecialValue() - 
-                monsterModel.getBasicValue()) + " contra sectarios");
+        int bonus = monsterModel.getSpecialValue() - monsterModel.getBasicValue();
+        String mas = bonus >= 0 ? "+" : "";
+        bonusSectarios.setText(mas + bonus + " contra sectarios");
         prizePanel.setPrize(monsterModel.getPrize());
         badPanel.setBad(monsterModel.getBadConsequence());
         

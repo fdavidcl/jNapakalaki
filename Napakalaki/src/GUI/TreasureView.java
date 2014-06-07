@@ -68,7 +68,7 @@ public class TreasureView extends javax.swing.JPanel {
         typeLabel.setFont(typeLabel.getFont().deriveFont(typeLabel.getFont().getStyle() | java.awt.Font.BOLD));
         typeLabel.setText("TIPO");
 
-        nameLabel.setFont(nameLabel.getFont());
+        nameLabel.setFont(nameLabel.getFont().deriveFont(nameLabel.getFont().getSize()-2f));
         nameLabel.setText("Nombre");
 
         goldLabel.setFont(goldLabel.getFont().deriveFont(goldLabel.getFont().getStyle() | java.awt.Font.BOLD));

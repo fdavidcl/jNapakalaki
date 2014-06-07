@@ -138,8 +138,8 @@ public class PlayerView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(visibleTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hiddenTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(visibleTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hiddenTreasures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -253,7 +253,7 @@ public class PlayerView extends javax.swing.JPanel {
             
         fillTreasurePanel(visibleTreasures, visibleNum, playerModel.getVisibleTreasures());
         fillTreasurePanel(hiddenTreasures, hiddenNum, playerModel.getHiddenTreasures());
-        paintImmediately(this.getVisibleRect());
+        repaint();
         revalidate();
     }
     
@@ -320,14 +320,14 @@ public class PlayerView extends javax.swing.JPanel {
             discardButton.setEnabled(false);
             makeVisButton.setEnabled(false);
         } else {
+            buyButton.setEnabled(false);
             discardButton.setEnabled(true);
+
             checkPendingBad();
         }
     }
 
     private void checkPendingBad() {
-        buyButton.setEnabled(false);
-        
         if (napakalakiModel.nextTurnAllowed()) {
             makeVisButton.setEnabled(true);
             dataPanel.setBackground(Color.white);
