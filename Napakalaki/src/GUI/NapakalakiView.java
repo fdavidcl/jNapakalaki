@@ -205,8 +205,6 @@ public class NapakalakiView extends javax.swing.JFrame {
             playerPanel.lockButtons(false);
             playerPanel.checkDeath();
         }
-        
-        
     }//GEN-LAST:event_combatButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed

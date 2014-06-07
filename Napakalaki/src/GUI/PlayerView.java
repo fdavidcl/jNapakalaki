@@ -204,7 +204,8 @@ public class PlayerView extends javax.swing.JPanel {
         ArrayList<Treasure> treasures = getSelectedTreasures(hiddenTreasures);
         
         for (Treasure t : treasures) {
-            napakalakiModel.makeTreasureVisible(t);
+            if (!napakalakiModel.makeTreasureVisible(t))
+                JOptionPane.showMessageDialog(null, "No puedes hacer visible un tesoro de tipo" + t.getType());
         }
         
         redraw();
@@ -249,10 +250,10 @@ public class PlayerView extends javax.swing.JPanel {
     public void redraw() {
         playerLabel.setText(playerModel.getName());
         levelLabel.setText(Integer.toString(playerModel.getCombatLevel()));
-        
+            
         fillTreasurePanel(visibleTreasures, visibleNum, playerModel.getVisibleTreasures());
         fillTreasurePanel(hiddenTreasures, hiddenNum, playerModel.getHiddenTreasures());
-        repaint();
+        paintImmediately(this.getVisibleRect());
         revalidate();
     }
     
